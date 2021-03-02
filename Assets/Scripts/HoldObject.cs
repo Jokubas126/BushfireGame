@@ -5,7 +5,10 @@ using UnityEngine;
 public class HoldObject : MonoBehaviour
 {
     private GameObject pickedUpObject;
+    private Quaternion pickedObjectRotation;
+
     public float interactionDistance = 10f;
+
 
     void Update()
     {
@@ -32,6 +35,7 @@ public class HoldObject : MonoBehaviour
             if (hit.collider.gameObject.CompareTag("PickableObject"))
             {
                 pickedUpObject = hit.collider.gameObject;
+                pickedObjectRotation = pickedUpObject.transform.rotation;
             }
         }
     }
@@ -45,6 +49,7 @@ public class HoldObject : MonoBehaviour
     private void Release()
     {
         pickedUpObject.transform.position = GetPutPosition();
+        pickedUpObject.transform.rotation = pickedObjectRotation;
         pickedUpObject.transform.parent = null;
         pickedUpObject = null;
     }
