@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Rock
+  - Grass
+  - Bush
+  - Water
+  - Tree
   layers:
   - Default
   - TransparentFX
