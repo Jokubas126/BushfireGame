@@ -7,7 +7,6 @@ public class HoldObject : MonoBehaviour
     private GameObject pickedUpObject;
     public float interactionDistance = 10f;
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown("e") && pickedUpObject == null)
@@ -26,29 +25,36 @@ public class HoldObject : MonoBehaviour
         }
     }
 
-    void PickUp()
+    private void PickUp()
     {
-        int layerMask = 1 << 8;
-
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, interactionDistance, layerMask))
+        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, interactionDistance, 1 << 8))
         {
             if (hit.collider.gameObject.CompareTag("PickableObject"))
             {
                 pickedUpObject = hit.collider.gameObject;
-                
             }
         }
     }
 
-    void CarryObject()
+    private void CarryObject()
     {
         pickedUpObject.transform.parent = transform;
         pickedUpObject.transform.position = transform.position + transform.forward;
     }
 
-    void Release()
+    private void Release()
     {
+        pickedUpObject.transform.position = GetPutPosition();
         pickedUpObject.transform.parent = null;
         pickedUpObject = null;
+    }
+
+    private Vector3 GetPutPosition()
+    {
+        Vector3 putPosition = GameObject.FindGameObjectWithTag("Ground").transform.position;
+        putPosition.x = pickedUpObject.transform.position.x;
+        putPosition.z = pickedUpObject.transform.position.z;
+        putPosition.y += pickedUpObject.transform.lossyScale.y / 2;
+        return putPosition;
     }
 }

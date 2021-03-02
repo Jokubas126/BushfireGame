@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - PickableObject
+  - Ground
   layers:
   - Default
   - TransparentFX
