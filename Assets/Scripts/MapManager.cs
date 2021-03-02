@@ -8,6 +8,9 @@ public class MapManager : MonoBehaviour
     public GameObject[,] map = new GameObject[20,20];
     public GameObject grassPrefab;
     public GameObject treePrefab;
+    public GameObject bushPrefab;
+    public GameObject rockPrefab;
+    public GameObject waterPrefab;
 
     void Start()
     {
@@ -43,6 +46,15 @@ public class MapManager : MonoBehaviour
                 break;
             case 'T':
                 tileToSpawn = treePrefab;
+                break;
+            case 'B':
+                tileToSpawn = bushPrefab;
+                break;
+            case 'R':
+                tileToSpawn = rockPrefab;
+                break;
+            case 'W':
+                tileToSpawn = waterPrefab;
                 break;
             default:
                 Debug.LogError("Can't spawn undefined tile!");

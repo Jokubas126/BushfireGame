@@ -45,3 +45,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grassPrefab: {fileID: 3682513337744179943, guid: 3150c7a001e75674896377814b630ee2, type: 3}
   treePrefab: {fileID: 6299191524520316885, guid: 02624b4a01dc2f9448af24b68ad6d2ed, type: 3}
+  bushPrefab: {fileID: 5667510694937359335, guid: 9ad30e193e08294438f82e2be52b03c5, type: 3}
+  rockPrefab: {fileID: 1204723832918983615, guid: 6fd7f4b179518cf468de6b8835ec2f6c, type: 3}
+  waterPrefab: {fileID: 6470179132410263191, guid: 73218ef0b3fa68844b56c756284cca21, type: 3}
