@@ -6,6 +6,11 @@ TagManager:
   tags:
   - PickableObject
   - Ground
+  - Rock
+  - Grass
+  - Bush
+  - Water
+  - Tree
   layers:
   - Default
   - TransparentFX
