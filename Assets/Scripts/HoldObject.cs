@@ -9,28 +9,22 @@ public class HoldObject : MonoBehaviour
 
     public float interactionDistance = 10f;
 
-
     void Update()
     {
-        if (Input.GetKeyDown("e") && pickedUpObject == null)
+        if (Input.GetKeyDown("e"))
         {
-            PickUp();
+            if (pickedUpObject == null)
+                PickUp();
+            else Release();
         }
-
-        if (pickedUpObject != null)
-        {
-            CarryObject();
-
-            if (Input.GetKey("r"))
-            {
-                Release();
-            }
-        }
+        CarryObject();
     }
 
     private void PickUp()
     {
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, interactionDistance, 1 << 8))
+        int layerMask = 1 << 8; // layer of pickable object
+
+        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, interactionDistance, layerMask))
         {
             if (hit.collider.gameObject.CompareTag("PickableObject"))
             {
@@ -42,8 +36,11 @@ public class HoldObject : MonoBehaviour
 
     private void CarryObject()
     {
-        pickedUpObject.transform.parent = transform;
-        pickedUpObject.transform.position = transform.position + transform.forward;
+        if (pickedUpObject != null)
+        {
+            pickedUpObject.transform.parent = transform;
+            pickedUpObject.transform.position = transform.position + transform.forward;
+        }
     }
 
     private void Release()
