@@ -1,7 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using System.IO;
+using UnityEngine.Networking;
+
 
 public class MapManager : MonoBehaviour
 {
@@ -14,23 +17,16 @@ public class MapManager : MonoBehaviour
 
     void Start()
     {
-        GenerateMap("Assets/Resources/TestFile.txt");
+        StartCoroutine(ReadFile());    //online level loading
     }
 
-    void Update()
+    void GenerateMap(string[] lines)
     {
-        
-    }
-
-    void GenerateMap(string mapFilePath)
-    {
-        List<string> mapLines = ReadFile(mapFilePath);
-        for (int y = 0; y < mapLines.Count; y++)
+        for (int y = 0; y < lines.Length; y++)
         {
-            for (int x = 0; x < mapLines[y].Length; x++)
+            for (int x = 0; x < lines[y].Length; x++)
             {
-                Debug.Log("Spawning tile");
-                map[x, y] = spawnTile(mapLines[y][x], x, y);
+                map[x, y] = spawnTile(lines[y][x], x, y);
             }
         }
     }
@@ -77,5 +73,22 @@ public class MapManager : MonoBehaviour
         }
         reader.Close();
         return lines;
+    }
+
+    IEnumerator ReadFile()
+    {
+        UnityWebRequest www = UnityWebRequest.Get("https://group-609.github.io/BushfireGame/levelData.txt");
+        yield return www.SendWebRequest();
+
+        if (www.isNetworkError || www.isHttpError)
+        {
+            Debug.LogError(www.error);
+        }
+        else
+        {
+            // Show results as text
+            string[] textLines = www.downloadHandler.text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+            GenerateMap(textLines);
+        }
     }
 }
