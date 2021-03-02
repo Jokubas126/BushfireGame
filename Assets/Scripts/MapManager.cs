@@ -82,13 +82,12 @@ public class MapManager : MonoBehaviour
 
         if (www.isNetworkError || www.isHttpError)
         {
-            Debug.Log(www.error);
+            Debug.LogError(www.error);
         }
         else
         {
             // Show results as text
             string[] textLines = www.downloadHandler.text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
-            Debug.LogError("Lines counted: " + textLines.Length);
             GenerateMap(textLines);
         }
     }
