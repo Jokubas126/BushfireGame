@@ -14,5 +14,6 @@ public class PlayerFollower : MonoBehaviour
         pos.y += cameraHeight;
         pos.z += cameraDistance;
         transform.position = pos;
+        transform.LookAt(player.transform);
     }
 }
