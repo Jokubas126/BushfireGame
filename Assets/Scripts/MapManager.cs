@@ -5,7 +5,7 @@ using System.IO;
 
 public class MapManager : MonoBehaviour
 {
-    public GameObject[,] map = new GameObject[20,20];
+    public GameObject[,] map = new GameObject[100,100]; 
     public GameObject grassPrefab;
     public GameObject treePrefab;
     public GameObject bushPrefab;
