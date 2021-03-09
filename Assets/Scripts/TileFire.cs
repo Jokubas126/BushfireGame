@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class TileFire : MonoBehaviour
 {
-    public int tileType; //Collect from general tile script. 0-5 determining different tile types.
-
     public int fireResistanceMax;
     public int fireResistanceCurrent; //If this is 0, tile is considered on fire
     public int fireDuration; //If we want fire to be able to die out on its own
 
     void Start()
     {
+
         //fireResistanceMax = Random.Range(5, 100); //Moved to tile initialization
         //fireResistanceCurrent = fireResistanceMax;
     }

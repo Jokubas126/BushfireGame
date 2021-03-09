@@ -14,17 +14,21 @@ public class MapManager : MonoBehaviour
     public GameObject bushPrefab;
     public GameObject rockPrefab;
     public GameObject waterPrefab;
+    public int mapSizeX = 0;
+    public int mapSizeY = 0;
 
     void Start()
     {
-        StartCoroutine(ReadFile());    //online level loading
+        StartCoroutine(LoadLevel());    //online level loading
     }
 
     void GenerateMap(string[] lines)
     {
-        for (int y = 0; y < lines.Length; y++)
+        mapSizeX = lines[0].Length;
+        mapSizeY = lines.Length;
+        for (int y = 0; y < mapSizeY; y++)
         {
-            for (int x = 0; x < lines[y].Length; x++)
+            for (int x = 0; x < mapSizeX; x++)
             {
                 map[x, y] = spawnTile(lines[y][x], x, y);
             }
@@ -75,7 +79,7 @@ public class MapManager : MonoBehaviour
         return lines;
     }
 
-    IEnumerator ReadFile()
+    IEnumerator LoadLevel()
     {
         UnityWebRequest www = UnityWebRequest.Get("https://group-609.github.io/BushfireGame/levelData.txt");
         yield return www.SendWebRequest();
@@ -89,6 +93,7 @@ public class MapManager : MonoBehaviour
             // Show results as text
             string[] textLines = www.downloadHandler.text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
             GenerateMap(textLines);
+            transform.GetComponent<FireController>().enabled = true;
         }
     }
 }
