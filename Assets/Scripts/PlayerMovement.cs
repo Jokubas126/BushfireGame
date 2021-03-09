@@ -5,12 +5,12 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private CharacterController controller;
-    public float playerSpeed = 2.0f;
+    public float playerSpeed = 5.0f;
 
-    public float grassMovementCoef = 1f;
-    public float treeMovementCoef = 0.2f;
-    public float waterMovementCoef = 0.35f;
-    public float bushMovementCoef = 0.7f;
+    public static readonly float grassMovementCoef = 1f;
+    public static readonly float treeMovementCoef = 0.35f;
+    public static readonly float waterMovementCoef = 0.5f;
+    public static readonly float bushMovementCoef = 0.7f;
 
     private void Start()
     {
@@ -34,7 +34,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 3, layerMask))
         {
-            Debug.Log("Raycast has hit. Tag = " + hit.collider.gameObject.tag);
             switch (hit.collider.gameObject.tag)
             {
                 case "Grass":

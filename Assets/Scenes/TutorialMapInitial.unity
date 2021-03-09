@@ -393,6 +393,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8492131918732242112, guid: 45b4b5ef8b2bd424bbd638bb11a41ae5, type: 3}
+      propertyPath: playerSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8492131918732242112, guid: 45b4b5ef8b2bd424bbd638bb11a41ae5, type: 3}
+      propertyPath: treeMovementCoef
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8492131918732242112, guid: 45b4b5ef8b2bd424bbd638bb11a41ae5, type: 3}
+      propertyPath: waterMovementCoef
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8492131918732242113, guid: 45b4b5ef8b2bd424bbd638bb11a41ae5, type: 3}
       propertyPath: m_Name
       value: PlayerObject
