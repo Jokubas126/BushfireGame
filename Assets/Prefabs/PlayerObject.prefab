@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2106258605521410751}
   - component: {fileID: 2232384424184736523}
   - component: {fileID: 1670163707137166898}
-  - component: {fileID: 3907629813991565411}
   m_Layer: 0
   m_Name: Water Hose
   m_TagString: Untagged
@@ -82,20 +81,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &3907629813991565411
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 659941250255433978}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &8492131918732242113
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,7 +92,6 @@ GameObject:
   - component: {fileID: 8492131918732242116}
   - component: {fileID: 8492131918732242117}
   - component: {fileID: 8492131918732242114}
-  - component: {fileID: 8492131918732242115}
   - component: {fileID: 8492131918732242112}
   - component: {fileID: 8492131918732242119}
   m_Layer: 0
@@ -182,20 +166,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &8492131918732242115
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8492131918732242113}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8492131918732242112
 MonoBehaviour:
   m_ObjectHideFlags: 0
