@@ -66,5 +66,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireTickDelay: 20
   fireTickCounter: 0
-  fireStartX: 1400000014000000
-  fireStartZ: 140000000a000000
+  fireStartX: 1200000014000000
+  fireStartZ: 0000000014000000

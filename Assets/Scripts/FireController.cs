@@ -76,7 +76,7 @@ public class FireController : MonoBehaviour
 
     private void TileIgnition(int i, int j)
     {
-        if (gameObject.tag == "Rock" || gameObject.tag == "Water")  //We dont burn water and rock tiles
+        if (map[i, j].tag == "Rock" || map[i, j].tag == "Water")  //We dont burn water and rock tiles
         { 
             return;
         }
