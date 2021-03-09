@@ -104,7 +104,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4933156971424796592}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bush
   m_TagString: Bush
   m_Icon: {fileID: 0}
@@ -137,6 +137,10 @@ PrefabInstance:
     - target: {fileID: 182406, guid: a1d34f7914a1d8148a0ce7262f7ba394, type: 3}
       propertyPath: m_Name
       value: Tree Type3 03
+      objectReference: {fileID: 0}
+    - target: {fileID: 182406, guid: a1d34f7914a1d8148a0ce7262f7ba394, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 421498, guid: a1d34f7914a1d8148a0ce7262f7ba394, type: 3}
       propertyPath: m_LocalPosition.x
