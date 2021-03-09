@@ -7,10 +7,10 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController controller;
     public float playerSpeed = 5.0f;
 
-    public static readonly float grassMovementCoef = 1f;
-    public static readonly float treeMovementCoef = 0.35f;
-    public static readonly float waterMovementCoef = 0.5f;
-    public static readonly float bushMovementCoef = 0.7f;
+    private static readonly float grassMovementCoef = 1f;
+    private static readonly float treeMovementCoef = 0.35f;
+    private static readonly float waterMovementCoef = 0.5f;
+    private static readonly float bushMovementCoef = 0.7f;
 
     private void Start()
     {
@@ -48,4 +48,5 @@ public class PlayerMovement : MonoBehaviour
         }
         return 1f;
     }
+
 }
