@@ -12,6 +12,7 @@ public class HoldObject : MonoBehaviour
 
     void Update()
     {
+        HighlightPickupable();
         if (Input.GetKeyDown("e"))
         {
             if (pickedUpObject == null)
@@ -59,5 +60,18 @@ public class HoldObject : MonoBehaviour
         putPosition.z = pickedUpObject.transform.position.z;
         putPosition.y = floorHeight + pickedUpObject.transform.lossyScale.y / 2;
         return putPosition;
+    }
+
+    private void HighlightPickupable()
+    {
+        int layerMask = 1 << 8; // layer of pickable object
+
+        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, interactionDistance, layerMask))
+        {
+            if (hit.collider.gameObject.CompareTag("PickableObject"))
+            {
+                hit.collider.gameObject.GetComponent<Highlightable>().Highlight();
+            }
+        }
     }
 }
