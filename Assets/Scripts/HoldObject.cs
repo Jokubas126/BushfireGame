@@ -6,6 +6,7 @@ public class HoldObject : MonoBehaviour
 {
     private GameObject pickedUpObject;
     private Quaternion pickedObjectRotation;
+    private float floorHeight = 0.5f;
 
     public float interactionDistance = 10f;
 
@@ -53,10 +54,10 @@ public class HoldObject : MonoBehaviour
 
     private Vector3 GetPutPosition()
     {
-        Vector3 putPosition = GameObject.FindGameObjectWithTag("Ground").transform.position;
+        Vector3 putPosition;
         putPosition.x = pickedUpObject.transform.position.x;
         putPosition.z = pickedUpObject.transform.position.z;
-        putPosition.y += pickedUpObject.transform.lossyScale.y / 2;
+        putPosition.y = floorHeight + pickedUpObject.transform.lossyScale.y / 2;
         return putPosition;
     }
 }
