@@ -346,9 +346,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aee7c17e2ad6b2c4fa8a9239c0ea9214, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tile: {fileID: 0}
-  fireTickDelay: 1000
+  fireTickDelay: 20
   fireTickCounter: 0
+  fireStartX: 1400000014000000
+  fireStartZ: 140000000a000000
 --- !u!1001 &872068366
 PrefabInstance:
   m_ObjectHideFlags: 0
