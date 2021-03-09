@@ -32,7 +32,7 @@ public class FireEstinguisher : MonoBehaviour
         isShooting = true;
 
         GameObject waterDrip = Instantiate(waterPrefab, transform.position, Quaternion.identity);
-        waterDrip.GetComponent<Rigidbody>().velocity = transform.TransformDirection(transform.forward * 2f);
+        waterDrip.GetComponent<Rigidbody>().velocity = transform.TransformDirection(Vector3.up * 5f);
 
         chargesLeft--;
         yield return new WaitForSeconds(shootingDelay);
