@@ -11,10 +11,15 @@ public class HoldObject : MonoBehaviour
 
     public float interactionDistance = 10f;
 
+    public bool IsHoldingObject
+    {
+        get => pickedUpObject != null;
+    }
+
     void Update()
     {
         targetedObject = HighlightPickupable();
-        if (Input.GetKeyDown("e"))
+        if (Input.GetKeyDown("f"))
         {
             if (pickedUpObject == null)
             {
