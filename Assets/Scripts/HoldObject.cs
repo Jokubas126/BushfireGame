@@ -5,6 +5,7 @@ using UnityEngine;
 public class HoldObject : MonoBehaviour
 {
     private GameObject pickedUpObject;
+    private GameObject targetedObject;
     private Quaternion pickedObjectRotation;
     private float floorHeight = 0.5f;
 
@@ -12,28 +13,25 @@ public class HoldObject : MonoBehaviour
 
     void Update()
     {
-        HighlightPickupable();
+        targetedObject = HighlightPickupable();
         if (Input.GetKeyDown("e"))
         {
             if (pickedUpObject == null)
-                PickUp();
+            {
+                if (targetedObject != null)
+                {
+                    PickUp();
+                }
+            }
             else Release();
         }
         CarryObject();
     }
 
     private void PickUp()
-    {
-        int layerMask = 1 << 8; // layer of pickable object
-
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, interactionDistance, layerMask))
-        {
-            if (hit.collider.gameObject.CompareTag("PickableObject"))
-            {
-                pickedUpObject = hit.collider.gameObject;
-                pickedObjectRotation = pickedUpObject.transform.rotation;
-            }
-        }
+    { 
+        pickedUpObject = targetedObject;
+        pickedObjectRotation = pickedUpObject.transform.rotation;
     }
 
     private void CarryObject()
@@ -62,7 +60,7 @@ public class HoldObject : MonoBehaviour
         return putPosition;
     }
 
-    private void HighlightPickupable()
+    private GameObject HighlightPickupable()
     {
         int layerMask = 1 << 8; // layer of pickable object
 
@@ -71,7 +69,9 @@ public class HoldObject : MonoBehaviour
             if (hit.collider.gameObject.CompareTag("PickableObject"))
             {
                 hit.collider.gameObject.GetComponent<Highlightable>().Highlight();
+                return hit.collider.gameObject;
             }
         }
+        return null;
     }
 }
