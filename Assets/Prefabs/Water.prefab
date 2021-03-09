@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 6567090092969227055}
   - component: {fileID: 1017560080921045523}
   - component: {fileID: 6082572536599200087}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WaterCube
-  m_TagString: Untagged
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,7 +105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8963479947310811493}
   - component: {fileID: 3146473072296881492}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Water
   m_TagString: Water
   m_Icon: {fileID: 0}

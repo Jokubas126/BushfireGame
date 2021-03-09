@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1971903914537951151}
   - component: {fileID: 9132005671140878886}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Grass
   m_TagString: Grass
   m_Icon: {fileID: 0}
@@ -60,9 +60,9 @@ GameObject:
   - component: {fileID: 759533735763804319}
   - component: {fileID: 2761081079101054748}
   - component: {fileID: 734746068775934473}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GrassCube
-  m_TagString: Untagged
+  m_TagString: Grass
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -202,6 +202,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 28fbc97a4e7e92144af43a4bd05be737, type: 3}
 --- !u!4 &4930177863169880165 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 4000012166036088, guid: 28fbc97a4e7e92144af43a4bd05be737, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4000012166036088, guid: 28fbc97a4e7e92144af43a4bd05be737,
+    type: 3}
   m_PrefabInstance: {fileID: 4928546957388728861}
   m_PrefabAsset: {fileID: 0}
