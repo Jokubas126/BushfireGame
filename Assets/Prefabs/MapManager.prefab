@@ -49,6 +49,7 @@ MonoBehaviour:
   bushPrefab: {fileID: 5667510694937359335, guid: 9ad30e193e08294438f82e2be52b03c5, type: 3}
   rockPrefab: {fileID: 1204723832918983615, guid: 6fd7f4b179518cf468de6b8835ec2f6c, type: 3}
   waterPrefab: {fileID: 6470179132410263191, guid: 73218ef0b3fa68844b56c756284cca21, type: 3}
+  borderWallPrefab: {fileID: 1204723832918983615, guid: 5e579ad2d3849454fb1d97a585b730f6, type: 3}
   mapSizeX: 0
   mapSizeY: 0
 --- !u!114 &774963028

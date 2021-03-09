@@ -14,6 +14,7 @@ public class MapManager : MonoBehaviour
     public GameObject bushPrefab;
     public GameObject rockPrefab;
     public GameObject waterPrefab;
+    public GameObject borderWallPrefab;
     public int mapSizeX = 0;
     public int mapSizeY = 0;
 
@@ -94,6 +95,25 @@ public class MapManager : MonoBehaviour
             string[] textLines = www.downloadHandler.text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
             GenerateMap(textLines);
             transform.GetComponent<FireController>().enabled = true;
+            CreateWallAroundMap();
+        }
+    }
+
+    private void CreateWallAroundMap()
+    {
+        for(int i = 0; i < mapSizeX; i++)
+        {
+            Vector3 spawnLocation = new Vector3(i, 0, mapSizeY);
+            Instantiate(borderWallPrefab, spawnLocation, Quaternion.identity, gameObject.transform);
+            spawnLocation = new Vector3(i, 0, -1);
+            Instantiate(borderWallPrefab, spawnLocation, Quaternion.identity, gameObject.transform);
+        }
+        for (int i = 0; i < mapSizeY; i++)
+        {
+            Vector3 spawnLocation = new Vector3(mapSizeX, 0, i);
+            Instantiate(borderWallPrefab, spawnLocation, Quaternion.identity, gameObject.transform);
+            spawnLocation = new Vector3(-1, 0, i);
+            Instantiate(borderWallPrefab, spawnLocation, Quaternion.identity, gameObject.transform);
         }
     }
 }
