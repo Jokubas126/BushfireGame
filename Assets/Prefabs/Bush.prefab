@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1956029054332636590}
   - component: {fileID: 8240610992995045431}
   - component: {fileID: 3135024594314468065}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BushCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

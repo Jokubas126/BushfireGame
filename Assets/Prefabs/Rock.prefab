@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 3331674234464652513}
   - component: {fileID: 8237074898290463991}
   - component: {fileID: 2986722765618628620}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RockCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
