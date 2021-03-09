@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1920423646662940784}
   - component: {fileID: 5405522050752498140}
+  - component: {fileID: 774963028}
   m_Layer: 0
   m_Name: MapManager
   m_TagString: Untagged
@@ -48,3 +49,21 @@ MonoBehaviour:
   bushPrefab: {fileID: 5667510694937359335, guid: 9ad30e193e08294438f82e2be52b03c5, type: 3}
   rockPrefab: {fileID: 1204723832918983615, guid: 6fd7f4b179518cf468de6b8835ec2f6c, type: 3}
   waterPrefab: {fileID: 6470179132410263191, guid: 73218ef0b3fa68844b56c756284cca21, type: 3}
+  mapSizeX: 0
+  mapSizeY: 0
+--- !u!114 &774963028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3978994091968037556}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aee7c17e2ad6b2c4fa8a9239c0ea9214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireTickDelay: 20
+  fireTickCounter: 0
+  fireStartX: 1400000014000000
+  fireStartZ: 140000000a000000
