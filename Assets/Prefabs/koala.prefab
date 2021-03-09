@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5967750225220914360}
   - component: {fileID: 5967750225220914363}
   m_Layer: 8
-  m_Name: Animal
+  m_Name: koala
   m_TagString: PickableObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
