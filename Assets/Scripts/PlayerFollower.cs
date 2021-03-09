@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class PlayerFollower : MonoBehaviour
 {
-    public GameObject player;
+    private GameObject player;
     public float cameraHeight = 10.0f;
     public float cameraDistance = -21.0f;
+
+    void Start()
+    {
+        this.player = GameObject.FindWithTag("Player");
+    }
 
     void Update()
     {
