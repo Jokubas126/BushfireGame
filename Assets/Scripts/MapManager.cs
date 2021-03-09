@@ -14,17 +14,22 @@ public class MapManager : MonoBehaviour
     public GameObject bushPrefab;
     public GameObject rockPrefab;
     public GameObject waterPrefab;
+    public GameObject borderWallPrefab;
+    public int mapSizeX = 0;
+    public int mapSizeY = 0;
 
     void Start()
     {
-        StartCoroutine(ReadFile());    //online level loading
+        StartCoroutine(LoadLevel());    //online level loading
     }
 
     void GenerateMap(string[] lines)
     {
-        for (int y = 0; y < lines.Length; y++)
+        mapSizeX = lines[0].Length;
+        mapSizeY = lines.Length;
+        for (int y = 0; y < mapSizeY; y++)
         {
-            for (int x = 0; x < lines[y].Length; x++)
+            for (int x = 0; x < mapSizeX; x++)
             {
                 map[x, y] = spawnTile(lines[y][x], x, y);
             }
@@ -75,7 +80,7 @@ public class MapManager : MonoBehaviour
         return lines;
     }
 
-    IEnumerator ReadFile()
+    IEnumerator LoadLevel()
     {
         UnityWebRequest www = UnityWebRequest.Get("https://group-609.github.io/BushfireGame/levelData.txt");
         yield return www.SendWebRequest();
@@ -89,6 +94,26 @@ public class MapManager : MonoBehaviour
             // Show results as text
             string[] textLines = www.downloadHandler.text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
             GenerateMap(textLines);
+            transform.GetComponent<FireController>().enabled = true;
+            CreateWallAroundMap();
+        }
+    }
+
+    private void CreateWallAroundMap()
+    {
+        for(int i = 0; i < mapSizeX; i++)
+        {
+            Vector3 spawnLocation = new Vector3(i, 0, mapSizeY);
+            Instantiate(borderWallPrefab, spawnLocation, Quaternion.identity, gameObject.transform);
+            spawnLocation = new Vector3(i, 0, -1);
+            Instantiate(borderWallPrefab, spawnLocation, Quaternion.identity, gameObject.transform);
+        }
+        for (int i = 0; i < mapSizeY; i++)
+        {
+            Vector3 spawnLocation = new Vector3(mapSizeX, 0, i);
+            Instantiate(borderWallPrefab, spawnLocation, Quaternion.identity, gameObject.transform);
+            spawnLocation = new Vector3(-1, 0, i);
+            Instantiate(borderWallPrefab, spawnLocation, Quaternion.identity, gameObject.transform);
         }
     }
 }
