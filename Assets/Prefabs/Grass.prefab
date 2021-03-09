@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 734746068775934473}
   m_Layer: 9
   m_Name: GrassCube
-  m_TagString: Untagged
+  m_TagString: Grass
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
