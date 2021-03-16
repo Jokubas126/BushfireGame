@@ -33,7 +33,6 @@ public class PlayerHealth : MonoBehaviour
             TileFire tileBelow = hit.collider.gameObject.GetComponentInParent<TileFire>();
             if (tileBelow != null)   //Make sure we are above tile
             {
-                Debug.Log("Tile below");
                 if(tileBelow.fireResistanceCurrent <= 0)
                 {
                     return true;

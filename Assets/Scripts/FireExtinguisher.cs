@@ -19,7 +19,7 @@ public class FireExtinguisher : MonoBehaviour
 
     private void Start()
     {
-        chargesLeft = chargeSize;
+        RefillCharges();
         playerHoldObject = GameObject.FindGameObjectWithTag("Player").GetComponent<HoldObject>();
     }
 
@@ -45,5 +45,10 @@ public class FireExtinguisher : MonoBehaviour
         chargesLeft--;
         yield return new WaitForSeconds(shootingDelay);
         isShooting = false;
+    }
+
+    public void RefillCharges()
+    {
+        chargesLeft = chargeSize;
     }
 }
