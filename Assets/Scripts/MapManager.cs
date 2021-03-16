@@ -18,6 +18,7 @@ public class MapManager : MonoBehaviour
     public GameObject koalaPrefab;
     public GameObject playerPrefab;
     public GameObject cameraPrefab;
+    public GameObject safezonePrefab;
     public int mapSizeX = 0;
     public int mapSizeY = 0;
 
@@ -78,7 +79,7 @@ public class MapManager : MonoBehaviour
                 break;
             case 'S':       //Safezone
                 tileToSpawn = grassPrefab;
-                //Instantiate(safezonePrefab, spawnLocation + new Vector3(0, 1, 0), Quaternion.identity, gameObject.transform);     //uncomment when merging with Mikkel's safezone implementation
+                Instantiate(safezonePrefab, spawnLocation + new Vector3(0, 1, 0), Quaternion.identity, gameObject.transform);     //uncomment when merging with Mikkel's safezone implementation
                 break;
             default:
                 Debug.LogError("Can't spawn undefined tile!: " + tileType);

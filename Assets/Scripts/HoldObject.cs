@@ -33,6 +33,11 @@ public class HoldObject : MonoBehaviour
         CarryObject();
     }
 
+    public GameObject GetPickedUpObject()
+    {
+        return pickedUpObject;
+    }
+
     private void PickUp()
     { 
         pickedUpObject = targetedObject;
