@@ -8,7 +8,7 @@ public class FireExtinguisher : MonoBehaviour
     public int chargeSize = 11;
     public float shootingDelay = 0.8f;
     public float chargeVelocity = 4f;
-    public float fireSpread = 0.5f;
+    public float extinguisherSpread = 0.5f;
 
     private int chargesLeft;
 
@@ -39,7 +39,7 @@ public class FireExtinguisher : MonoBehaviour
         {
             yield return new WaitForSeconds(0.05f);
             GameObject waterDrip = Instantiate(waterPrefab, transform.position, Quaternion.identity);
-            waterDrip.GetComponent<Rigidbody>().velocity = transform.TransformDirection(new Vector3(Random.Range(-fireSpread, fireSpread), 1, Random.Range(-fireSpread, fireSpread)) * chargeVelocity);
+            waterDrip.GetComponent<Rigidbody>().velocity = transform.TransformDirection(new Vector3(Random.Range(-extinguisherSpread, extinguisherSpread), 1, Random.Range(-extinguisherSpread, extinguisherSpread)) * chargeVelocity);
         }
 
         chargesLeft--;
