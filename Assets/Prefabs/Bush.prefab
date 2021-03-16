@@ -144,6 +144,7 @@ MonoBehaviour:
   fireResistanceMax: 20
   fireResistanceCurrent: 0
   fireDuration: 0
+  isFireStartTile: 0
 --- !u!1001 &2039828764049293028
 PrefabInstance:
   m_ObjectHideFlags: 0

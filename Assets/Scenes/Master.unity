@@ -262,6 +262,10 @@ PrefabInstance:
       propertyPath: fireStartZ.Array.data[3]
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 774963028, guid: 2f6a7bc8f1aa8914880119a6e2a10a96, type: 3}
+      propertyPath: fireTickDelay
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1920423646662940784, guid: 2f6a7bc8f1aa8914880119a6e2a10a96, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

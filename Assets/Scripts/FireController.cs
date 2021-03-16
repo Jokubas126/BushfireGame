@@ -25,6 +25,7 @@ public class FireController : MonoBehaviour
             for (int j = 0; j < mapSizeY; j++)
             {
                 map[i, j].GetComponent<TileFire>().fireResistanceMax += Random.Range(5, 20);       //Add randomness to fire resistance
+                map[i, j].GetComponent<TileFire>().fireDuration = map[i, j].GetComponent<TileFire>().fireResistanceMax * 10 * Random.Range(.7f, 1f); //Randomness to duration
                 if (!map[i, j].GetComponent<TileFire>().isFireStartTile)
                 {
                     map[i, j].GetComponent<TileFire>().fireResistanceCurrent = map[i, j].GetComponent<TileFire>().fireResistanceMax;
@@ -44,17 +45,17 @@ public class FireController : MonoBehaviour
             {
                 for (int j = 0; j < mapSizeY; j++)
                 {
-                    if (map[i, j].GetComponent<TileFire>().fireResistanceCurrent == 0)
+                    if (map[i, j].GetComponent<TileFire>().fireResistanceCurrent <= 0 && map[i, j].GetComponent<TileFire>().fireDuration > 0)
                     {
-                        if(i > 0)
+                        if (i > 0)
                         {
                             TileIgnition(i - 1, j);
                         }
-                        if(i < mapSizeX - 1)
+                        if (i < mapSizeX - 1)
                         {
                             TileIgnition(i + 1, j);
                         }
-                        if(j > 0)
+                        if (j > 0)
                         {
                             TileIgnition(i, j - 1);
                         }
@@ -62,10 +63,12 @@ public class FireController : MonoBehaviour
                         {
                             TileIgnition(i, j + 1);
                         }
+
+                        map[i, j].GetComponent<TileFire>().fireDuration--;
                     }
                 }
+                fireTickCounter = fireTickDelay;
             }
-            fireTickCounter = fireTickDelay;
         }
     }
 
@@ -77,7 +80,7 @@ public class FireController : MonoBehaviour
         }
         else if (map[i, j].GetComponent<TileFire>().fireResistanceCurrent > 0)
         { 
-            map[i, j].GetComponent<TileFire>().fireResistanceCurrent -= 1;
+            map[i, j].GetComponent<TileFire>().fireResistanceCurrent--;
         }
     }
 }
