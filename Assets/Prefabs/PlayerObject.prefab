@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2232384424184736523}
   - component: {fileID: 1670163707137166898}
   - component: {fileID: 2025653115785162259}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WaterHose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,6 @@ MonoBehaviour:
   shootingDelay: 0.8
   chargeVelocity: 4
   extinguisherSpread: 0.5
-  chargesLeft: 0
   waterPrefab: {fileID: 6583732904180852610, guid: 1751d1176c43fe44fbf1b9315d8cc9d3, type: 3}
 --- !u!1 &8492131918732242113
 GameObject:
@@ -115,7 +114,7 @@ GameObject:
   - component: {fileID: 8492131918732242112}
   - component: {fileID: 8492131918732242119}
   - component: {fileID: 2324897875400191853}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PlayerObject
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -241,7 +240,7 @@ GameObject:
   - component: {fileID: 8492131920253850174}
   - component: {fileID: 8492131920253850175}
   - component: {fileID: 8492131920253850172}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
