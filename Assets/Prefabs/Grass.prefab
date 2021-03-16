@@ -48,6 +48,7 @@ MonoBehaviour:
   fireResistanceMax: 10
   fireResistanceCurrent: 0
   fireDuration: 0
+  isFireStartTile: 0
 --- !u!1 &4688486134603075059
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,7 +203,6 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 28fbc97a4e7e92144af43a4bd05be737, type: 3}
 --- !u!4 &4930177863169880165 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 4000012166036088, guid: 28fbc97a4e7e92144af43a4bd05be737,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 4000012166036088, guid: 28fbc97a4e7e92144af43a4bd05be737, type: 3}
   m_PrefabInstance: {fileID: 4928546957388728861}
   m_PrefabAsset: {fileID: 0}

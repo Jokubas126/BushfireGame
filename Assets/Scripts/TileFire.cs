@@ -6,7 +6,7 @@ public class TileFire : MonoBehaviour
 {
     public float fireResistanceMax;
     public float fireResistanceCurrent = 0; //If this is 0, tile is considered on fire
-    public int fireDuration; //If we want fire to be able to die out on its own
+    public float fireDuration; //If we want fire to be able to die out on its own
     private ParticleSystem fireParticles;
     private Color originalColor;
     public bool isFireStartTile = false;
@@ -25,7 +25,7 @@ public class TileFire : MonoBehaviour
     {
         if (fireParticles != null)
         {
-            if (fireResistanceCurrent == 0)
+            if (fireResistanceCurrent <= 0 && fireDuration > 0)
             {
                 if (!fireParticles.isEmitting)
                 {
@@ -34,7 +34,7 @@ public class TileFire : MonoBehaviour
             }
             else
             {
-                if (fireParticles.isPlaying && fireResistanceCurrent > 0)
+                if (fireParticles.isPlaying && fireResistanceCurrent > 0 || fireParticles.isPlaying && fireDuration <= 0)
                 {
                     fireParticles.Stop();
                 }
@@ -44,5 +44,10 @@ public class TileFire : MonoBehaviour
                 GetComponentInChildren<Renderer>().material.color = Color.HSVToRGB(H, S, V);
             }
         }
+    }
+
+    public void IncreaseTileResistance(float resistanceAddition)
+    {
+        fireResistanceCurrent = Mathf.Min(fireResistanceCurrent + resistanceAddition, fireResistanceMax);
     }
 }

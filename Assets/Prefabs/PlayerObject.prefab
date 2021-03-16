@@ -228,6 +228,8 @@ MonoBehaviour:
   fireDamage: 10
   burnReactivationTime: 0.5
   isCheckingBurn: 0
+  healthBar: {fileID: 0}
+  extinguisherBar: {fileID: 0}
 --- !u!1 &8492131920253850170
 GameObject:
   m_ObjectHideFlags: 0
