@@ -17,12 +17,9 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isCheckingBurn)
+        if (!isCheckingBurn && IsTileOnFire())
         {
-            if (IsTileOnFire())
-            {
-                StartCoroutine(burn());
-            }
+            StartCoroutine(burn());
         }
         death();
     }
