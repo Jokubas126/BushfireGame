@@ -45,4 +45,9 @@ public class TileFire : MonoBehaviour
             }
         }
     }
+
+    public void IncreaseTileResistance(float resistanceAddition)
+    {
+        fireResistanceCurrent = Mathf.Min(fireResistanceCurrent + resistanceAddition, fireResistanceMax);
+    }
 }

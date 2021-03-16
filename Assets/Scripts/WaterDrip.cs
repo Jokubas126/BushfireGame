@@ -6,11 +6,6 @@ public class WaterDrip : MonoBehaviour
 {
     public float extinguishPower = 5;
 
-    private void Start()
-    {
-        Physics.IgnoreLayerCollision(0, 10);
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
         switch (collision.gameObject.tag)
@@ -21,8 +16,8 @@ public class WaterDrip : MonoBehaviour
             case "Water":
             case "Rock":
                 if (collision.gameObject.GetComponentInParent<TileFire>() != null)
-                    collision.gameObject.GetComponentInParent<TileFire>().fireResistanceCurrent += extinguishPower;
-                gameObject.SetActive(false);
+                    collision.gameObject.GetComponentInParent<TileFire>().IncreaseTileResistance(extinguishPower);
+                Destroy(gameObject);
                 break;
         }
         

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5643500309257804535}
   - component: {fileID: 4144973718350855587}
   - component: {fileID: 3224837697123115825}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: WaterDrip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,3 +126,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad0786f61b517b94fa7cb1b629e31865, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  extinguishPower: 5
