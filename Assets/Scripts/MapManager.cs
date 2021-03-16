@@ -18,6 +18,9 @@ public class MapManager : MonoBehaviour
     public int mapSizeX = 0;
     public int mapSizeY = 0;
 
+    [SerializeField]
+    private string levelFileName = "";
+
     void Start()
     {
         StartCoroutine(LoadLevel());    //online level loading
@@ -82,7 +85,7 @@ public class MapManager : MonoBehaviour
 
     IEnumerator LoadLevel()
     {
-        UnityWebRequest www = UnityWebRequest.Get("https://group-609.github.io/BushfireGame/levelData.txt");
+        UnityWebRequest www = UnityWebRequest.Get("https://group-609.github.io/BushfireGame/"+ levelFileName + ".txt");
         yield return www.SendWebRequest();
 
         if (www.isNetworkError || www.isHttpError)
