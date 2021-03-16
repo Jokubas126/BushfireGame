@@ -5,10 +5,11 @@ using UnityEngine;
 public class TileFire : MonoBehaviour
 {
     public float fireResistanceMax;
-    public float fireResistanceCurrent; //If this is 0, tile is considered on fire
+    public float fireResistanceCurrent = 0; //If this is 0, tile is considered on fire
     public int fireDuration; //If we want fire to be able to die out on its own
     private ParticleSystem fireParticles;
     private Color originalColor;
+    public bool isFireStartTile = false;
 
     void Start()
     {
