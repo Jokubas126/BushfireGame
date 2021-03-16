@@ -50,8 +50,13 @@ MonoBehaviour:
   rockPrefab: {fileID: 1204723832918983615, guid: 6fd7f4b179518cf468de6b8835ec2f6c, type: 3}
   waterPrefab: {fileID: 6470179132410263191, guid: 73218ef0b3fa68844b56c756284cca21, type: 3}
   borderWallPrefab: {fileID: 1204723832918983615, guid: 5e579ad2d3849454fb1d97a585b730f6, type: 3}
+  koalaPrefab: {fileID: 5967750225220914365, guid: 5e06ea2412886e7418b9e2bdb4d836a9, type: 3}
+  playerPrefab: {fileID: 8492131918732242113, guid: 45b4b5ef8b2bd424bbd638bb11a41ae5, type: 3}
+  cameraPrefab: {fileID: 692978473213976266, guid: aa815c50913d6a548a673b6062562333, type: 3}
+  safezonePrefab: {fileID: 3102605569267121844, guid: e765fc42b26166b42bfd4660fee72734, type: 3}
   mapSizeX: 0
   mapSizeY: 0
+  levelFileName: 
 --- !u!114 &774963028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,5 +71,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireTickDelay: 20
   fireTickCounter: 0
-  fireStartX: 1200000014000000
-  fireStartZ: 0000000014000000

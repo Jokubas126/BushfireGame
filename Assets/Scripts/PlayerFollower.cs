@@ -11,6 +11,10 @@ public class PlayerFollower : MonoBehaviour
     void Start()
     {
         this.player = GameObject.FindWithTag("Player");
+        if (player == null)
+        {
+            Debug.LogError("Player position not defined in the level file!");
+        }
     }
 
     void Update()
