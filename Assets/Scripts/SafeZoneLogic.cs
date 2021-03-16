@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SafeZoneLogic : MonoBehaviour
-{ 
+{
     private GameObject player;
     private GameObject waterHose;
     [SerializeField]
@@ -11,33 +11,36 @@ public class SafeZoneLogic : MonoBehaviour
     private GameObject[] pickables;
     private int returnedPickables;
 
+    private bool objectsFound = false;
+
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        waterHose = player.transform.Find("WaterHose").gameObject;
-        pickables = GameObject.FindGameObjectsWithTag("PickableObject");
+        StartCoroutine(LocateObjects());
     }
 
     void Update()
     {
-        if (player.GetComponent<HoldObject>().IsHoldingObject == false && IsTargetInRange(player, radius))
+        if (objectsFound == true)
         {
-            waterHose.GetComponent<FireExtinguisher>().RefillCharges();
-        }
-
-        returnedPickables = 0;
-        for (int i = 0; i < pickables.Length; i++)
-        {
-            if (IsTargetInRange(pickables[i], radius))
+            if (player.GetComponent<HoldObject>().IsHoldingObject == false && IsTargetInRange(player, radius))
             {
-                returnedPickables++;
+                waterHose.GetComponent<FireExtinguisher>().RefillCharges();
             }
-        }
 
-        if (returnedPickables == pickables.Length)
-        {
-            //Win condition
-            Debug.Log("Win");
+            returnedPickables = 0;
+            for (int i = 0; i < pickables.Length; i++)
+            {
+                if (IsTargetInRange(pickables[i], radius))
+                {
+                    returnedPickables++;
+                }
+            }
+
+            if (returnedPickables == pickables.Length)
+            {
+                //Win condition
+                Debug.Log("Win");
+            }
         }
     }
 
@@ -49,5 +52,14 @@ public class SafeZoneLogic : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    private IEnumerator LocateObjects()
+    {
+        yield return new WaitForSeconds(2);
+        objectsFound = true;
+        player = GameObject.FindGameObjectWithTag("Player");
+        waterHose = player.transform.Find("WaterHose").gameObject;
+        pickables = GameObject.FindGameObjectsWithTag("PickableObject");
     }
 }

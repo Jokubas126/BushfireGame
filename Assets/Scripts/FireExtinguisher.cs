@@ -10,7 +10,6 @@ public class FireExtinguisher : MonoBehaviour
     public float chargeVelocity = 4f;
     public float extinguisherSpread = 0.5f;
 
-    [SerializeField]
     private int chargesLeft;
 
     private bool isShooting;
