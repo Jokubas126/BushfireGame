@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SafeZoneLogic : MonoBehaviour
 { 
-    [SerializeField]
     private GameObject player;
+    private GameObject waterHose;
     [SerializeField]
     private int radius;
     private GameObject[] pickables;
@@ -14,14 +14,15 @@ public class SafeZoneLogic : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        waterHose = player.transform.Find("WaterHose").gameObject;
         pickables = GameObject.FindGameObjectsWithTag("PickableObject");
     }
 
     void Update()
     {
-        if (player.GetComponent<HoldObject>().GetPickedUpObject() == null && IsTargetInRange(player, radius))
+        if (player.GetComponent<HoldObject>().IsHoldingObject == false && IsTargetInRange(player, radius))
         {
-            //Add extinguish ammo
+            waterHose.GetComponent<FireExtinguisher>().RefillCharges();
         }
 
         returnedPickables = 0;
