@@ -54,7 +54,7 @@ public class SafeZoneLogic : MonoBehaviour
         return false;
     }
 
-    private IEnumerator LocateObjects()
+    private IEnumerator LocateObjects() //All objects will have to have spawned before the safetyzone can locate them. Better solution will be to run a function from mapmanager when it's done loading all tiles.
     {
         yield return new WaitForSeconds(2);
         objectsFound = true;
