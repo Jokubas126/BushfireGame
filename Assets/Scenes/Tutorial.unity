@@ -327,6 +327,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MapManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5405522050752498140, guid: 2f6a7bc8f1aa8914880119a6e2a10a96, type: 3}
+      propertyPath: levelFileName
+      value: tutorial
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f6a7bc8f1aa8914880119a6e2a10a96, type: 3}
 --- !u!1001 &872068366
@@ -395,27 +399,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8492131918732242112, guid: 45b4b5ef8b2bd424bbd638bb11a41ae5, type: 3}
       propertyPath: playerSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8492131918732242112, guid: 45b4b5ef8b2bd424bbd638bb11a41ae5, type: 3}
-      propertyPath: treeMovementCoef
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8492131918732242112, guid: 45b4b5ef8b2bd424bbd638bb11a41ae5, type: 3}
-      propertyPath: waterMovementCoef
-      value: 0.5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8492131918732242113, guid: 45b4b5ef8b2bd424bbd638bb11a41ae5, type: 3}
       propertyPath: m_Name
       value: PlayerObject
       objectReference: {fileID: 0}
-    - target: {fileID: 8492131918732242115, guid: 45b4b5ef8b2bd424bbd638bb11a41ae5, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8492131918732242116, guid: 45b4b5ef8b2bd424bbd638bb11a41ae5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 3.4
       objectReference: {fileID: 0}
     - target: {fileID: 8492131918732242116, guid: 45b4b5ef8b2bd424bbd638bb11a41ae5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -423,7 +415,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8492131918732242116, guid: 45b4b5ef8b2bd424bbd638bb11a41ae5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 8.37
       objectReference: {fileID: 0}
     - target: {fileID: 8492131918732242116, guid: 45b4b5ef8b2bd424bbd638bb11a41ae5, type: 3}
       propertyPath: m_LocalRotation.x
@@ -457,6 +449,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8492131918732242115, guid: 45b4b5ef8b2bd424bbd638bb11a41ae5, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45b4b5ef8b2bd424bbd638bb11a41ae5, type: 3}
