@@ -9,9 +9,6 @@ public class FireController : MonoBehaviour
     public int fireTickDelay = 50;
     public int fireTickCounter;
 
-    public int[] fireStartX;
-    public int[] fireStartZ;
-
     private int mapSizeX;
     private int mapSizeY;
 
@@ -33,11 +30,6 @@ public class FireController : MonoBehaviour
         }
 
         fireTickCounter = fireTickDelay;
-
-        for(int i = 0; i < fireStartX.Length; i++)
-        {
-            map[fireStartX[i], fireStartZ[i]].GetComponent<TileFire>().fireResistanceCurrent = 0;
-        }
     }
 
     void FixedUpdate()

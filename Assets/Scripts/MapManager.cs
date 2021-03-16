@@ -15,6 +15,7 @@ public class MapManager : MonoBehaviour
     public GameObject rockPrefab;
     public GameObject waterPrefab;
     public GameObject borderWallPrefab;
+    public GameObject koalaPrefab; 
     public int mapSizeX = 0;
     public int mapSizeY = 0;
 
@@ -43,15 +44,19 @@ public class MapManager : MonoBehaviour
     {
         Vector3 spawnLocation = new Vector3( x, 0, y );
         GameObject tileToSpawn = null;
+        GameObject spawnedTile;
         switch (tileType)
         {
-            case 'G':
+            case 'G': 
+            case 'g':
                 tileToSpawn = grassPrefab;
                 break;
-            case 'T':
+            case 'T': 
+            case 't':
                 tileToSpawn = treePrefab;
                 break;
-            case 'B':
+            case 'B': 
+            case 'b':
                 tileToSpawn = bushPrefab;
                 break;
             case 'R':
@@ -60,12 +65,20 @@ public class MapManager : MonoBehaviour
             case 'W':
                 tileToSpawn = waterPrefab;
                 break;
+            case 'K':
+                tileToSpawn = grassPrefab;
+                Instantiate(koalaPrefab, spawnLocation + new Vector3(0,1,0), Quaternion.identity, gameObject.transform);
+                break;
             default:
                 Debug.LogError("Can't spawn undefined tile!");
                 break;
         }
-
-        return Instantiate(tileToSpawn, spawnLocation, Quaternion.identity, gameObject.transform);
+        spawnedTile = Instantiate(tileToSpawn, spawnLocation, Quaternion.identity, gameObject.transform);
+        if(Char.IsLower(tileType)) //lowercase charecters mean tile should start on fire
+        {
+            spawnedTile.GetComponent<TileFire>().fireResistanceCurrent = 0;
+        }
+        return spawnedTile;
     }
 
     List<string> ReadFile(string path)
