@@ -27,7 +27,6 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateGUI();
         if (!isCheckingBurn && IsTileOnFire())
         {
             StartCoroutine(burn());
@@ -35,7 +34,7 @@ public class PlayerHealth : MonoBehaviour
         death();
     }
 
-    private void UpdateGUI()
+    void OnGUI()
     {
         healthSlider.value = health;
     }

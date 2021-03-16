@@ -31,14 +31,13 @@ public class FireExtinguisher : MonoBehaviour
 
     private void Update()
     {
-        UpdateGUI();
         if (Input.GetKeyDown("e") && chargesLeft > 0 && !isShooting && !playerHoldObject.IsHoldingObject)
         {
             StartCoroutine(Extinguish());
         }
     }
 
-    private void UpdateGUI()
+    void OnGUI()
     {
         extinguisherSlider.value = chargesLeft;
     }
