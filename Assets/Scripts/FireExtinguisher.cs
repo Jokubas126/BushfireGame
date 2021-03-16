@@ -19,6 +19,7 @@ public class FireExtinguisher : MonoBehaviour
 
     private void Start()
     {
+        Physics.IgnoreLayerCollision(4, 10);
         RefillCharges();
         playerHoldObject = GameObject.FindGameObjectWithTag("Player").GetComponent<HoldObject>();
     }

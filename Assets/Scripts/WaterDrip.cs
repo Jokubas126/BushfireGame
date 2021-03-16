@@ -6,11 +6,6 @@ public class WaterDrip : MonoBehaviour
 {
     public float extinguishPower = 5;
 
-    private void Start()
-    {
-        Physics.IgnoreLayerCollision(0, 10);
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
         switch (collision.gameObject.tag)
