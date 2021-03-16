@@ -17,10 +17,10 @@ public class PlayerMovement : MonoBehaviour
         controller = gameObject.AddComponent<CharacterController>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        controller.Move(move * Time.deltaTime * playerSpeed * GetMovementCoef());
+        controller.Move(move * Time.fixedDeltaTime * playerSpeed * GetMovementCoef());
 
         if (move != Vector3.zero)
         {
