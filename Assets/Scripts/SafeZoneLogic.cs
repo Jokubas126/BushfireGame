@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SafeZoneLogic : MonoBehaviour
-{
+{ 
     [SerializeField]
     private GameObject player;
     [SerializeField]
@@ -13,23 +13,21 @@ public class SafeZoneLogic : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         pickables = GameObject.FindGameObjectsWithTag("PickableObject");
     }
 
     void Update()
     {
-        if (player.GetComponent<HoldObject>().get_PickedUpObject() == null)
+        if (player.GetComponent<HoldObject>().GetPickedUpObject() == null && IsTargetInRange(player, radius))
         {
-            if (IsTargetInRange(player, radius) == true)
-            {
-                //Add extinguish ammo
-            }
+            //Add extinguish ammo
         }
 
         returnedPickables = 0;
         for (int i = 0; i < pickables.Length; i++)
         {
-            if (IsTargetInRange(pickables[i], radius) == true)
+            if (IsTargetInRange(pickables[i], radius))
             {
                 returnedPickables++;
             }
@@ -38,6 +36,7 @@ public class SafeZoneLogic : MonoBehaviour
         if (returnedPickables == pickables.Length)
         {
             //Win condition
+            Debug.Log("Win");
         }
     }
 
