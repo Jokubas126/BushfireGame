@@ -17,7 +17,7 @@ public class WaterDrip : MonoBehaviour
             case "Rock":
                 if (collision.gameObject.GetComponentInParent<TileFire>() != null)
                     collision.gameObject.GetComponentInParent<TileFire>().IncreaseTileResistance(extinguishPower);
-                gameObject.SetActive(false);
+                Destroy(gameObject);
                 break;
         }
         
