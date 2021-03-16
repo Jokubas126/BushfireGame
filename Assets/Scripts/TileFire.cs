@@ -33,6 +33,10 @@ public class TileFire : MonoBehaviour
             }
             else
             {
+                if (fireParticles.isPlaying && fireResistanceCurrent > 0)
+                {
+                    fireParticles.Stop();
+                }
                 float H, S, V;
                 Color.RGBToHSV(originalColor, out H, out S, out V);
                 H = 0.1f + fireResistanceCurrent / fireResistanceMax * 0.13f;
