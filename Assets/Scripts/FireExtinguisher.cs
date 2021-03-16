@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireEstinguisher : MonoBehaviour
+public class FireExtinguisher : MonoBehaviour
 {
     public int singleChargeSize = 7;
     public int chargeSize = 11;
     public float shootingDelay = 0.8f;
     public float chargeVelocity = 4f;
+    public float fireSpread = 0.5f;
 
     private int chargesLeft;
 
@@ -26,19 +27,19 @@ public class FireEstinguisher : MonoBehaviour
     {
         if (Input.GetKeyDown("e") && chargesLeft > 0 && !isShooting && !playerHoldObject.IsHoldingObject)
         {
-            StartCoroutine(Estinguish());
+            StartCoroutine(Extinguish());
         }
     }
 
-    private IEnumerator Estinguish()
+    private IEnumerator Extinguish()
     {
         isShooting = true;
 
-        for(int i=0; i<singleChargeSize; i++)
+        for (int i = 0; i < singleChargeSize; i++)
         {
             yield return new WaitForSeconds(0.05f);
             GameObject waterDrip = Instantiate(waterPrefab, transform.position, Quaternion.identity);
-            waterDrip.GetComponent<Rigidbody>().velocity = transform.TransformDirection(new Vector3(Random.Range(0f, 0.7f), 1, Random.Range(0f, 0.7f)) * chargeVelocity);
+            waterDrip.GetComponent<Rigidbody>().velocity = transform.TransformDirection(new Vector3(Random.Range(-fireSpread, fireSpread), 1, Random.Range(-fireSpread, fireSpread)) * chargeVelocity);
         }
 
         chargesLeft--;
