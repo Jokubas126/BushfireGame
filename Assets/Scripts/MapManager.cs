@@ -87,7 +87,7 @@ public class MapManager : MonoBehaviour
         spawnedTile = Instantiate(tileToSpawn, spawnLocation, Quaternion.identity, gameObject.transform);
         if(Char.IsLower(tileType)) //lowercase charecters mean tile should start on fire
         {
-            spawnedTile.GetComponent<TileFire>().fireResistanceCurrent = 0;
+            spawnedTile.GetComponent<TileFire>().isFireStartTile = true;
         }
         return spawnedTile;
     }
