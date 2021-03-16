@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -13,15 +15,29 @@ public class PlayerHealth : MonoBehaviour
     private float burnReactivationTime = 0.5f;
 
     public bool isCheckingBurn = false;
+    private Slider healthSlider;
+    
+
+    void Start()
+    {
+        healthSlider = GameObject.Find("HealthBar").GetComponent<Slider>();
+        healthSlider.maxValue = health;
+    }
 
     // Update is called once per frame
     void Update()
     {
+        UpdateGUI();
         if (!isCheckingBurn && IsTileOnFire())
         {
             StartCoroutine(burn());
         }
         death();
+    }
+
+    private void UpdateGUI()
+    {
+        healthSlider.value = health;
     }
 
     private bool IsTileOnFire()

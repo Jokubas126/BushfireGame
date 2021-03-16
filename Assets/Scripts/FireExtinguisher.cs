@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class FireExtinguisher : MonoBehaviour
 {
@@ -17,18 +19,28 @@ public class FireExtinguisher : MonoBehaviour
     public GameObject waterPrefab;
     private HoldObject playerHoldObject;
 
+    private Slider extinguisherSlider;
+
     private void Start()
     {
         RefillCharges();
         playerHoldObject = GameObject.FindGameObjectWithTag("Player").GetComponent<HoldObject>();
+        extinguisherSlider = GameObject.Find("ExtinguisherBar").GetComponent<Slider>();
+        extinguisherSlider.maxValue = chargeSize;
     }
 
     private void Update()
     {
+        UpdateGUI();
         if (Input.GetKeyDown("e") && chargesLeft > 0 && !isShooting && !playerHoldObject.IsHoldingObject)
         {
             StartCoroutine(Extinguish());
         }
+    }
+
+    private void UpdateGUI()
+    {
+        extinguisherSlider.value = chargesLeft;
     }
 
     private IEnumerator Extinguish()
