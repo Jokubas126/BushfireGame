@@ -15,7 +15,9 @@ public class MapManager : MonoBehaviour
     public GameObject rockPrefab;
     public GameObject waterPrefab;
     public GameObject borderWallPrefab;
-    public GameObject koalaPrefab; 
+    public GameObject koalaPrefab;
+    public GameObject playerPrefab;
+    public GameObject cameraPrefab;
     public int mapSizeX = 0;
     public int mapSizeY = 0;
 
@@ -38,6 +40,7 @@ public class MapManager : MonoBehaviour
                 map[x, y] = spawnTile(lines[y][x], x, y);
             }
         }
+        Instantiate(cameraPrefab, new Vector3(0,0,0), Quaternion.identity, gameObject.transform);
     }
 
     GameObject spawnTile(char tileType, int x, int y)
@@ -65,12 +68,20 @@ public class MapManager : MonoBehaviour
             case 'W':
                 tileToSpawn = waterPrefab;
                 break;
-            case 'K':
+            case 'K':       //koala
                 tileToSpawn = grassPrefab;
                 Instantiate(koalaPrefab, spawnLocation + new Vector3(0,1,0), Quaternion.identity, gameObject.transform);
                 break;
+            case 'P':       //player
+                tileToSpawn = grassPrefab;
+                Instantiate(playerPrefab, spawnLocation + new Vector3(0, 1, 0), Quaternion.identity, gameObject.transform);
+                break;
+            case 'S':       //Safezone
+                tileToSpawn = grassPrefab;
+                //Instantiate(safezonePrefab, spawnLocation + new Vector3(0, 1, 0), Quaternion.identity, gameObject.transform);     //uncomment when merging with Mikkel's safezone implementation
+                break;
             default:
-                Debug.LogError("Can't spawn undefined tile!");
+                Debug.LogError("Can't spawn undefined tile!: " + tileType);
                 break;
         }
         spawnedTile = Instantiate(tileToSpawn, spawnLocation, Quaternion.identity, gameObject.transform);

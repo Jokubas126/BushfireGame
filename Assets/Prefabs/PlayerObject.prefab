@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: defeb3bb75c15124dbcf34b1e464e99f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 8
+  playerSpeed: 4
 --- !u!114 &8492131918732242119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,6 +141,7 @@ MonoBehaviour:
   health: 100
   fireDamage: 10
   burnReactivationTime: 0.5
+  isCheckingBurn: 0
 --- !u!1 &8492131920253850170
 GameObject:
   m_ObjectHideFlags: 0
