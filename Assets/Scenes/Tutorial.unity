@@ -329,7 +329,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5405522050752498140, guid: 2f6a7bc8f1aa8914880119a6e2a10a96, type: 3}
       propertyPath: levelFileName
-      value: level1
+      value: tutorial
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f6a7bc8f1aa8914880119a6e2a10a96, type: 3}
@@ -415,7 +415,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8492131918732242116, guid: 45b4b5ef8b2bd424bbd638bb11a41ae5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 23
+      value: 8.37
       objectReference: {fileID: 0}
     - target: {fileID: 8492131918732242116, guid: 45b4b5ef8b2bd424bbd638bb11a41ae5, type: 3}
       propertyPath: m_LocalRotation.x
