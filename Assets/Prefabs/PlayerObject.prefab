@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2106258605521410751}
   - component: {fileID: 2232384424184736523}
   - component: {fileID: 1670163707137166898}
+  - component: {fileID: 2641501154316527189}
   m_Layer: 0
   m_Name: Water Hose
   m_TagString: Untagged
@@ -81,6 +82,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2641501154316527189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 659941250255433978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c2ad7064e3ed00478a7cf49dc12e676, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waterPrefab: {fileID: 6583732904180852610, guid: 1751d1176c43fe44fbf1b9315d8cc9d3, type: 3}
 --- !u!1 &8492131918732242113
 GameObject:
   m_ObjectHideFlags: 0
