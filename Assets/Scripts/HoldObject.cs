@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class HoldObject : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject safeZone;
     private GameObject pickedUpObject;
     private GameObject targetedObject;
     private Quaternion pickedObjectRotation;
@@ -26,6 +28,11 @@ public class HoldObject : MonoBehaviour
             else Release();
         }
         CarryObject();
+    }
+
+    public GameObject get_PickedUpObject()
+    {
+        return pickedUpObject;
     }
 
     private void PickUp()
