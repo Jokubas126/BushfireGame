@@ -25,6 +25,6 @@ public class Score : MonoBehaviour
     public void AnimalDied()
     {
         animalsDead++;
-        animalsDeadTextMesh.SetText("Animals dead: {0}", animalsDead);
+        animalsDeadTextMesh.SetText("Animals lost: {0}", animalsDead);
     }
 }
