@@ -18,10 +18,13 @@ public class PlayerHealth : MonoBehaviour
 
     private HealthManager healthManager;
 
+    Animator animator;
+
     void Start()
     {
         healthSlider = GameObject.Find("HealthBar").GetComponent<Slider>();
         healthSlider.maxValue = health;
+        animator = GetComponent<Animator>();
 
         healthManager = new HealthManager(health, fireDamage, burnReactivationTime);
     }
@@ -31,6 +34,7 @@ public class PlayerHealth : MonoBehaviour
         if (healthManager.IsAllowedToBurn(transform.position))
         {
             StartCoroutine(healthManager.Burn());
+            StartCoroutine(BurnAnimate());
         }
         if (healthManager.IsDead)
         {
@@ -42,4 +46,15 @@ public class PlayerHealth : MonoBehaviour
     {
         healthSlider.value = healthManager.health;
     }
-}
+    IEnumerator BurnAnimate()
+    {
+        animator.Play("UpperBody.Hurt");
+        if (!animator.GetBool("isHolding"))
+        {
+            animator.Play("Hands.Hurt");
+        }
+        yield return new WaitForSeconds(burnReactivationTime);
+        yield return null;
+    }
+
+    }
