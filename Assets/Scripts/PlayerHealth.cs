@@ -14,63 +14,32 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField]
     private float burnReactivationTime = 0.5f;
 
-    public bool isCheckingBurn = false;
     private Slider healthSlider;
-    
+
+    private HealthManager healthManager;
 
     void Start()
     {
         healthSlider = GameObject.Find("HealthBar").GetComponent<Slider>();
         healthSlider.maxValue = health;
+
+        healthManager = new HealthManager(health, fireDamage, burnReactivationTime);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (!isCheckingBurn && IsTileOnFire())
+        if (healthManager.IsAllowedToBurn(transform))
         {
-            StartCoroutine(burn());
+            StartCoroutine(healthManager.Burn());
         }
-        death();
-    }
-
-    void OnGUI()
-    {
-        healthSlider.value = health;
-    }
-
-    private bool IsTileOnFire()
-    {
-        int layerMask = 1 << 9; // layer of map tile
-
-        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 3, layerMask))
-        {
-            TileFire tileBelow = hit.collider.gameObject.GetComponentInParent<TileFire>();
-            if (tileBelow != null)   //Make sure we are above tile
-            {
-                if(tileBelow.fireResistanceCurrent <= 0 && tileBelow.fireDuration > 0)
-                {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    private void death()
-    {
-        if(health <= 0)
+        if (healthManager.IsDead)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
-    IEnumerator burn()
+    void OnGUI()
     {
-        isCheckingBurn = true;
-        health -= fireDamage;
-        yield return new WaitForSeconds(burnReactivationTime);
-        isCheckingBurn = false;
-        yield return null;
+        healthSlider.value = healthManager.health;
     }
 }
