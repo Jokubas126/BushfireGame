@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController controller;
     public float playerSpeed = 5.0f;
     public float rotateSpeed = 250.0f;
+    public int noMovementRotSteps = 16;
 
     private static readonly float grassMovementCoef = 1f;
     private static readonly float treeMovementCoef = 0.35f;
@@ -32,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             Vector3 newRotation = transform.rotation.ToEulerAngles();
-            newRotation.y = Mathf.Round(newRotation.y * 180 / Mathf.PI / 22.5f) * 22.5f;
+            newRotation.y = Mathf.Round(newRotation.y * 180 / Mathf.PI / (360f/noMovementRotSteps)) * (360f / noMovementRotSteps);
             Quaternion rotation = Quaternion.Euler(newRotation);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, rotateSpeed * Time.fixedDeltaTime);
         }
