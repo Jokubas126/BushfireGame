@@ -5,8 +5,6 @@ public class Score : MonoBehaviour
 {
     public TMP_Text animalsSavedTextMesh;
     public TMP_Text animalsDeadTextMesh;
-    private int animalsSaved;
-    private int animalsAlive;
     private int animalsDead;
     private SafeZoneLogic safeZone;
 
@@ -17,9 +15,7 @@ public class Score : MonoBehaviour
 
     void Update()
     {
-        animalsSaved = safeZone.returnedPickables;
-        animalsAlive = safeZone.animalsAlive.Count;
-        animalsSavedTextMesh.SetText("Animals saved: {0}/{1} ", animalsSaved, animalsAlive);
+        animalsSavedTextMesh.SetText("Animals saved: {0}/{1} ", safeZone.animalsSaved, safeZone.animalsAlive.Count);
     }
 
     public void AnimalDied()

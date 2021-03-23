@@ -10,7 +10,7 @@ public class SafeZoneLogic : MonoBehaviour
     [SerializeField]
     private int radius;
     public List<GameObject> animalsAlive;
-    public int returnedPickables;
+    public int animalsSaved;
 
     private bool objectsFound = false;
 
@@ -30,14 +30,14 @@ public class SafeZoneLogic : MonoBehaviour
                 waterHose.GetComponent<FireExtinguisher>().RefillCharges();
             }
 
-            returnedPickables = animalsAlive.FindAll(
+            animalsSaved = animalsAlive.FindAll(
                     delegate (GameObject animal)
                     {
                         return IsTargetInRange(animal, radius);
                     }
                 ).Count;
 
-            if (returnedPickables == animalsAlive.Count)
+            if (animalsSaved == animalsAlive.Count)
             {
                 GameObject.Find("Canvas").transform.Find("WinText").gameObject.SetActive(true);
             }
