@@ -60,6 +60,6 @@ public class SafeZoneLogic : MonoBehaviour
         objectsFound = true;
         player = GameObject.FindGameObjectWithTag("Player");
         waterHose = player.transform.Find("WaterHose").gameObject;
-        GameObject.Find("Canvas").transform.Find("Score").gameObject.SetActive(true);
+        GameObject.Find("Canvas").GetComponent<Score>().enabled = true;
     }
 }
