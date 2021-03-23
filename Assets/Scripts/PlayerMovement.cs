@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private CharacterController controller;
     public float playerSpeed = 5.0f;
+    public float rotateSpeed = 250.0f;
 
     private static readonly float grassMovementCoef = 1f;
     private static readonly float treeMovementCoef = 0.35f;
@@ -25,7 +26,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (move != Vector3.zero)
         {
-            gameObject.transform.forward = move;
+            var r = Quaternion.LookRotation(move);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, r, rotateSpeed * Time.deltaTime);
         }
     }
 
