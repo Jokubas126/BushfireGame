@@ -8,8 +8,8 @@ public class SafeZoneLogic : MonoBehaviour
     private GameObject waterHose;
     [SerializeField]
     private int radius;
-    private GameObject[] pickables;
-    private int returnedPickables;
+    public GameObject[] pickables;
+    public int returnedPickables;
 
     private bool objectsFound = false;
 
@@ -38,8 +38,7 @@ public class SafeZoneLogic : MonoBehaviour
 
             if (returnedPickables == pickables.Length)
             {
-                //Win condition
-                Debug.Log("Win");
+                GameObject.Find("Canvas").transform.Find("WinText").gameObject.SetActive(true);
             }
         }
     }
@@ -61,5 +60,6 @@ public class SafeZoneLogic : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         waterHose = player.transform.Find("WaterHose").gameObject;
         pickables = GameObject.FindGameObjectsWithTag("PickableObject");
+        GameObject.Find("Canvas").transform.Find("Score").gameObject.SetActive(true); 
     }
 }
