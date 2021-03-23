@@ -18,7 +18,6 @@ public class PlayerHealth : MonoBehaviour
 
     private HealthManager healthManager;
 
-    bool isCheckingBurn;
     Animator animator;
 
     void Start()
@@ -49,14 +48,12 @@ public class PlayerHealth : MonoBehaviour
     }
     IEnumerator BurnAnimate()
     {
-        isCheckingBurn = true;
         animator.Play("UpperBody.Hurt");
         if (!animator.GetBool("isHolding"))
         {
             animator.Play("Hands.Hurt");
         }
         yield return new WaitForSeconds(burnReactivationTime);
-        isCheckingBurn = false;
         yield return null;
     }
 
