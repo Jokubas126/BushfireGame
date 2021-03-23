@@ -18,7 +18,7 @@ public class Score : MonoBehaviour
     {
 
         animalsSaved = safeZone.returnedPickables;
-        animalsAlive = safeZone.pickables.Length;
+        animalsAlive = safeZone.animalsAlive.Count;
         textmeshPro.SetText("Animals saved: {0}/{1} ", animalsSaved, animalsAlive);
     }
 
