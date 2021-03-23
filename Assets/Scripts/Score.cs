@@ -3,9 +3,11 @@ using TMPro;
 
 public class Score : MonoBehaviour
 {
-    public TMP_Text textmeshPro = null;
+    public TMP_Text animalsSavedTextMesh;
+    public TMP_Text animalsDeadTextMesh;
     int animalsSaved;
     int animalsAlive;
+    int animalsDead;
     SafeZoneLogic safeZone;
 
     void Start()
@@ -13,13 +15,16 @@ public class Score : MonoBehaviour
         safeZone = GameObject.Find("MapManager").transform.Find("SafetyZone(Clone)").GetComponent<SafeZoneLogic>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-
         animalsSaved = safeZone.returnedPickables;
         animalsAlive = safeZone.animalsAlive.Count;
-        textmeshPro.SetText("Animals saved: {0}/{1} ", animalsSaved, animalsAlive);
+        animalsSavedTextMesh.SetText("Animals saved: {0}/{1} ", animalsSaved, animalsAlive);
     }
 
+    public void AnimalDied()
+    {
+        animalsDead++;
+        animalsDeadTextMesh.SetText("Animals dead: {0}", animalsDead);
+    }
 }
