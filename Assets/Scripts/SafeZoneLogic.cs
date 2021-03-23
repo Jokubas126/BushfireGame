@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class SafeZoneLogic : MonoBehaviour
 {
@@ -8,8 +9,8 @@ public class SafeZoneLogic : MonoBehaviour
     private GameObject waterHose;
     [SerializeField]
     private int radius;
-    public GameObject[] pickables;
-    public int returnedPickables;
+    public List<GameObject> animalsAlive;
+    public int animalsSaved;
 
     private bool objectsFound = false;
 
@@ -22,21 +23,21 @@ public class SafeZoneLogic : MonoBehaviour
     {
         if (objectsFound == true)
         {
+            animalsAlive = GameObject.FindGameObjectsWithTag("PickableObject").ToList();
+
             if (player.GetComponent<HoldObject>().IsHoldingObject == false && IsTargetInRange(player, radius))
             {
                 waterHose.GetComponent<FireExtinguisher>().RefillCharges();
             }
 
-            returnedPickables = 0;
-            for (int i = 0; i < pickables.Length; i++)
-            {
-                if (IsTargetInRange(pickables[i], radius))
-                {
-                    returnedPickables++;
-                }
-            }
+            animalsSaved = animalsAlive.FindAll(
+                    delegate (GameObject animal)
+                    {
+                        return IsTargetInRange(animal, radius);
+                    }
+                ).Count;
 
-            if (returnedPickables == pickables.Length)
+            if (animalsSaved == animalsAlive.Count)
             {
                 GameObject.Find("Canvas").transform.Find("WinText").gameObject.SetActive(true);
             }
@@ -59,7 +60,6 @@ public class SafeZoneLogic : MonoBehaviour
         objectsFound = true;
         player = GameObject.FindGameObjectWithTag("Player");
         waterHose = player.transform.Find("WaterHose").gameObject;
-        pickables = GameObject.FindGameObjectsWithTag("PickableObject");
-        GameObject.Find("Canvas").transform.Find("Score").gameObject.SetActive(true); 
+        GameObject.Find("Canvas").transform.Find("Score").gameObject.SetActive(true);
     }
 }
