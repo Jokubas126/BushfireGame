@@ -27,7 +27,7 @@ public class AnimalHealth : MonoBehaviour
         if (healthManager.IsDead)
         {
             Debug.Log("Koala is dead");
-            GameObject.Find("Score").GetComponent<Score>().AnimalDied();
+            GameObject.Find("Canvas").GetComponent<Score>().AnimalDied();
             Destroy(gameObject);
         }
     }

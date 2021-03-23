@@ -27,6 +27,7 @@ public class FireExtinguisher : MonoBehaviour
     {
         animator = transform.parent.GetComponent<Animator>();
         Physics.IgnoreLayerCollision(4, 10);
+        Physics.IgnoreLayerCollision(4, 8);
         RefillCharges();
         playerHoldObject = GameObject.FindGameObjectWithTag("Player").GetComponent<HoldObject>();
         extinguisherSlider = GameObject.Find("ExtinguisherBar").GetComponent<Slider>();
