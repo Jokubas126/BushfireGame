@@ -5,10 +5,10 @@ public class Score : MonoBehaviour
 {
     public TMP_Text animalsSavedTextMesh;
     public TMP_Text animalsDeadTextMesh;
-    int animalsSaved;
-    int animalsAlive;
-    int animalsDead;
-    SafeZoneLogic safeZone;
+    private int animalsSaved;
+    private int animalsAlive;
+    private int animalsDead;
+    private SafeZoneLogic safeZone;
 
     void Start()
     {
