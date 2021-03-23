@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b1b4599cca54374482cce4d826a7a2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireResistanceMax: 50
+  fireResistanceMax: 55
   fireResistanceCurrent: 0
   fireDuration: 0
   isFireStartTile: 0
