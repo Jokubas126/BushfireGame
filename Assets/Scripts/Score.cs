@@ -10,6 +10,8 @@ public class Score : MonoBehaviour
 
     void Start()
     {
+        transform.Find("Animals saved").gameObject.SetActive(true);
+        transform.Find("Animals dead").gameObject.SetActive(true);
         safeZone = GameObject.Find("MapManager").transform.Find("SafetyZone(Clone)").GetComponent<SafeZoneLogic>();
     }
 

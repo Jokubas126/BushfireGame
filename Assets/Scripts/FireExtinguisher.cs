@@ -11,6 +11,8 @@ public class FireExtinguisher : MonoBehaviour
     public float shootingDelay = 0.8f;
     public float chargeVelocity = 6f;
     public float extinguisherSpread = 0.8f;
+    private Animator animator;
+    public bool isUnderPlayerControl = true;
 
     private int chargesLeft;
 
@@ -23,6 +25,7 @@ public class FireExtinguisher : MonoBehaviour
 
     private void Start()
     {
+        animator = transform.parent.GetComponent<Animator>();
         Physics.IgnoreLayerCollision(4, 10);
         RefillCharges();
         playerHoldObject = GameObject.FindGameObjectWithTag("Player").GetComponent<HoldObject>();
@@ -32,7 +35,7 @@ public class FireExtinguisher : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown("e") && chargesLeft > 0 && !isShooting && !playerHoldObject.IsHoldingObject)
+        if (Input.GetKeyDown("e") && chargesLeft > 0 && !isShooting && !playerHoldObject.IsHoldingObject && isUnderPlayerControl)
         {
             StartCoroutine(Extinguish());
         }
@@ -46,7 +49,7 @@ public class FireExtinguisher : MonoBehaviour
     private IEnumerator Extinguish()
     {
         isShooting = true;
-
+        animator.Play("Hands.Extinguish");
         for (int i = 0; i < singleChargeSize; i++)
         {
             yield return new WaitForSeconds(0.05f);
