@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerMovement : MonoBehaviour
 {
     private CharacterController controller;
@@ -23,11 +24,17 @@ public class PlayerMovement : MonoBehaviour
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         move = Vector3.ClampMagnitude(move, 1f);
         controller.Move(move * Time.fixedDeltaTime * playerSpeed * GetMovementCoef());
-
         if (move != Vector3.zero)
         {
             var r = Quaternion.LookRotation(move);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, r, rotateSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, r, rotateSpeed * Time.fixedDeltaTime);
+        }
+        else
+        {
+            Vector3 newRotation = transform.rotation.ToEulerAngles();
+            newRotation.y = Mathf.Round(newRotation.y * 180 / Mathf.PI / 22.5f) * 22.5f;
+            Quaternion rotation = Quaternion.Euler(newRotation);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, rotateSpeed * Time.fixedDeltaTime);
         }
     }
 
