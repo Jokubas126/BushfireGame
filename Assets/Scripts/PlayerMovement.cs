@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerMovement : MonoBehaviour
 {
     private CharacterController controller;
     public float playerSpeed = 5.0f;
+    public float rotateSpeed = 250.0f;
+    public int noMovementRotSteps = 16;
 
     private static readonly float grassMovementCoef = 1f;
     private static readonly float treeMovementCoef = 0.35f;
@@ -22,10 +25,17 @@ public class PlayerMovement : MonoBehaviour
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         move = Vector3.ClampMagnitude(move, 1f);
         controller.Move(move * Time.fixedDeltaTime * playerSpeed * GetMovementCoef());
-
         if (move != Vector3.zero)
         {
-            gameObject.transform.forward = move;
+            var r = Quaternion.LookRotation(move);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, r, rotateSpeed * Time.fixedDeltaTime);
+        }
+        else
+        {
+            Vector3 newRotation = transform.rotation.ToEulerAngles();
+            newRotation.y = Mathf.Round(newRotation.y * 180 / Mathf.PI / (360f/noMovementRotSteps)) * (360f / noMovementRotSteps);
+            Quaternion rotation = Quaternion.Euler(newRotation);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, rotateSpeed * Time.fixedDeltaTime);
         }
     }
 
