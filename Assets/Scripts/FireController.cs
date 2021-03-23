@@ -8,6 +8,7 @@ public class FireController : MonoBehaviour
 
     public int fireTickDelay = 50;
     public int fireTickCounter;
+    public float fireStartResistanceMultiplier = 0.3f;
 
     private int mapSizeX;
     private int mapSizeY;
@@ -28,7 +29,7 @@ public class FireController : MonoBehaviour
                 map[i, j].GetComponent<TileFire>().fireDuration = map[i, j].GetComponent<TileFire>().fireResistanceMax * 10 * Random.Range(.7f, 1f); //Randomness to duration
                 if (!map[i, j].GetComponent<TileFire>().isFireStartTile)
                 {
-                    map[i, j].GetComponent<TileFire>().fireResistanceCurrent = map[i, j].GetComponent<TileFire>().fireResistanceMax;
+                    map[i, j].GetComponent<TileFire>().fireResistanceCurrent = map[i, j].GetComponent<TileFire>().fireResistanceMax * fireStartResistanceMultiplier;
                 }
             }
         }
@@ -74,7 +75,7 @@ public class FireController : MonoBehaviour
 
     private void TileIgnition(int i, int j)
     {
-        if (map[i, j].tag == "Rock" || map[i, j].tag == "Water")  //We dont burn water and rock tiles
+        if (map[i, j].tag == "Rock" || map[i, j].tag == "Water" || map[i, j].GetComponent<TileFire>().fireDuration <= 0)  //We dont burn water and rock tiles
         { 
             return;
         }

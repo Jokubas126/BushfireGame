@@ -94,11 +94,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b37bf9ab07b5ec4d9c5c2c8a8f282ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  singleChargeSize: 7
-  chargeSize: 11
-  shootingDelay: 0.8
-  chargeVelocity: 4
-  extinguisherSpread: 0.5
+  singleChargeSize: 20
+  chargeSize: 20
+  shootingDelay: 0.1
+  chargeVelocity: 5
+  extinguisherSpread: 0.4
   waterPrefab: {fileID: 6583732904180852610, guid: 1751d1176c43fe44fbf1b9315d8cc9d3, type: 3}
 --- !u!1 &8492131918732242113
 GameObject:
@@ -228,8 +228,6 @@ MonoBehaviour:
   fireDamage: 10
   burnReactivationTime: 0.5
   isCheckingBurn: 0
-  healthBar: {fileID: 0}
-  extinguisherBar: {fileID: 0}
 --- !u!1 &8492131920253850170
 GameObject:
   m_ObjectHideFlags: 0

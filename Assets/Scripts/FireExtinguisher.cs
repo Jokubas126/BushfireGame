@@ -6,11 +6,11 @@ using UnityEngine.UI;
 
 public class FireExtinguisher : MonoBehaviour
 {
-    public int singleChargeSize = 7;
+    public int singleChargeSize = 10;
     public int chargeSize = 11;
     public float shootingDelay = 0.8f;
-    public float chargeVelocity = 4f;
-    public float extinguisherSpread = 0.5f;
+    public float chargeVelocity = 6f;
+    public float extinguisherSpread = 0.8f;
 
     private int chargesLeft;
 
