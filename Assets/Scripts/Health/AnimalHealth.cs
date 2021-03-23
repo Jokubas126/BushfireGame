@@ -26,7 +26,8 @@ public class AnimalHealth : MonoBehaviour
         }
         if (healthManager.IsDead)
         {
-            
+            Debug.Log("Koala is dead");
+            Destroy(gameObject);
         }
     }
 }

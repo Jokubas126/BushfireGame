@@ -45,10 +45,13 @@ public class SafeZoneLogic : MonoBehaviour
 
     private bool IsTargetInRange(GameObject target, int closeRange)
     {
-        float dist = Vector3.Distance(target.transform.position, gameObject.transform.position);
-        if (dist <= closeRange)
+        if (target != null)
         {
-            return true;
+            float dist = Vector3.Distance(target.transform.position, gameObject.transform.position);
+            if (dist <= closeRange)
+            {
+                return true;
+            }
         }
         return false;
     }
