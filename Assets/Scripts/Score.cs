@@ -7,14 +7,13 @@ public class Score : MonoBehaviour
     public TMP_Text animalsDeadTextMesh;
     private int animalsDead;
     private SafeZoneLogic safeZone;
-    private int animalsAtStart;
+    public int animalsAtStart = 0;
 
     void Start()
     {
         transform.Find("Animals saved").gameObject.SetActive(true);
         transform.Find("Animals dead").gameObject.SetActive(true);
         safeZone = GameObject.Find("MapManager").transform.Find("SafetyZone(Clone)").GetComponent<SafeZoneLogic>();
-        animalsAtStart = safeZone.animalsAlive.Count;
     }
 
     void Update()
