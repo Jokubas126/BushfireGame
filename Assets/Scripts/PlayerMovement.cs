@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private CharacterController controller;
     public float playerSpeed = 5.0f;
+    private Animator animator;
 
     private static readonly float grassMovementCoef = 1f;
     private static readonly float treeMovementCoef = 0.35f;
@@ -15,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         controller = gameObject.AddComponent<CharacterController>();
+        animator = GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -26,6 +28,11 @@ public class PlayerMovement : MonoBehaviour
         if (move != Vector3.zero)
         {
             gameObject.transform.forward = move;
+            animator.SetBool("isWalking", true);
+        }
+        else
+        {
+            animator.SetBool("isWalking", false);
         }
     }
 

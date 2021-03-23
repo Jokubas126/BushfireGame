@@ -8,12 +8,17 @@ public class HoldObject : MonoBehaviour
     private GameObject targetedObject;
     private Quaternion pickedObjectRotation;
     private float floorHeight = 0.5f;
+    private Animator animator;
 
     public float interactionDistance = 10f;
 
     public bool IsHoldingObject
     {
         get => pickedUpObject != null;
+    }
+    void Start()
+    {
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -42,6 +47,8 @@ public class HoldObject : MonoBehaviour
     { 
         pickedUpObject = targetedObject;
         pickedObjectRotation = pickedUpObject.transform.rotation;
+        animator.Play("KoalaUp");
+        animator.SetBool("isHolding", true);
     }
 
     private void CarryObject()
@@ -59,6 +66,8 @@ public class HoldObject : MonoBehaviour
         pickedUpObject.transform.rotation = pickedObjectRotation;
         pickedUpObject.transform.parent = null;
         pickedUpObject = null;
+        animator.Play("KoalaDown");
+        animator.SetBool("isHolding", false);
     }
 
     private Vector3 GetPutPosition()

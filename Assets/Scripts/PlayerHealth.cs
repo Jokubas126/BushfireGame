@@ -16,12 +16,14 @@ public class PlayerHealth : MonoBehaviour
 
     public bool isCheckingBurn = false;
     private Slider healthSlider;
-    
+    private Animator animator;
+
 
     void Start()
     {
         healthSlider = GameObject.Find("HealthBar").GetComponent<Slider>();
         healthSlider.maxValue = health;
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -69,6 +71,7 @@ public class PlayerHealth : MonoBehaviour
     {
         isCheckingBurn = true;
         health -= fireDamage;
+        animator.Play("Hurt");
         yield return new WaitForSeconds(burnReactivationTime);
         isCheckingBurn = false;
         yield return null;
