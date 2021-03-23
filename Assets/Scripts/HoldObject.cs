@@ -9,8 +9,9 @@ public class HoldObject : MonoBehaviour
     private Quaternion pickedObjectRotation;
     private float floorHeight = 0.5f;
     private Animator animator;
-
+    public bool isUnderPlayerControl = true;
     public float interactionDistance = 10f;
+    public float pickUpTime = 1f;
 
     public bool IsHoldingObject
     {
@@ -24,7 +25,7 @@ public class HoldObject : MonoBehaviour
     void Update()
     {
         targetedObject = HighlightPickupable();
-        if (Input.GetKeyDown("f"))
+        if (Input.GetKeyDown("f") && isUnderPlayerControl)
         {
             if (pickedUpObject == null)
             {
@@ -50,6 +51,7 @@ public class HoldObject : MonoBehaviour
         animator.Play("UpperBody.KoalaUp");
         animator.Play("Hands.KoalaUp");
         animator.SetBool("isHolding", true);
+        StartCoroutine(TakeAwayControls());
     }
 
     private void CarryObject()
@@ -70,6 +72,7 @@ public class HoldObject : MonoBehaviour
         animator.Play("UpperBody.KoalaDown");
         animator.Play("Hands.KoalaDown");
         animator.SetBool("isHolding", false);
+        StartCoroutine(TakeAwayControls());
     }
 
     private Vector3 GetPutPosition()
@@ -94,5 +97,19 @@ public class HoldObject : MonoBehaviour
             }
         }
         return null;
+    }
+
+    private IEnumerator TakeAwayControls()
+    {
+        setPlayerControl(false);
+        yield return new WaitForSeconds(pickUpTime);
+        setPlayerControl(true);
+    }
+
+    private void setPlayerControl(bool isPlayerControl)
+    {
+        isUnderPlayerControl = isPlayerControl;
+        GetComponent<PlayerMovement>().isUnderPlayerControl = isPlayerControl;
+        transform.Find("WaterHose").GetComponent<FireExtinguisher>().isUnderPlayerControl = isPlayerControl;
     }
 }

@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     public float rotateSpeed = 250.0f;
     public int noMovementRotSteps = 16;
+    public bool isUnderPlayerControl = true;
 
     private static readonly float grassMovementCoef = 1f;
     private static readonly float treeMovementCoef = 0.35f;
@@ -24,22 +25,25 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        move = Vector3.ClampMagnitude(move, 1f);
-        controller.Move(move * Time.fixedDeltaTime * playerSpeed * GetMovementCoef());
-        if (move != Vector3.zero)
+        if (isUnderPlayerControl)
         {
-            animator.SetBool("isWalking", true);
-            var r = Quaternion.LookRotation(move);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, r, rotateSpeed * Time.fixedDeltaTime);
-        }
-        else
-        {
-            animator.SetBool("isWalking", false);
-            Vector3 newRotation = transform.rotation.ToEulerAngles();
-            newRotation.y = Mathf.Round(newRotation.y * 180 / Mathf.PI / (360f/noMovementRotSteps)) * (360f / noMovementRotSteps);
-            Quaternion rotation = Quaternion.Euler(newRotation);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, rotateSpeed * Time.fixedDeltaTime);
+            Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            move = Vector3.ClampMagnitude(move, 1f);
+            controller.Move(move * Time.fixedDeltaTime * playerSpeed * GetMovementCoef());
+            if (move != Vector3.zero)
+            {
+                animator.SetBool("isWalking", true);
+                var r = Quaternion.LookRotation(move);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, r, rotateSpeed * Time.fixedDeltaTime);
+            }
+            else
+            {
+                animator.SetBool("isWalking", false);
+                Vector3 newRotation = transform.rotation.ToEulerAngles();
+                newRotation.y = Mathf.Round(newRotation.y * 180 / Mathf.PI / (360f / noMovementRotSteps)) * (360f / noMovementRotSteps);
+                Quaternion rotation = Quaternion.Euler(newRotation);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, rotateSpeed * Time.fixedDeltaTime);
+            }
         }
     }
 
