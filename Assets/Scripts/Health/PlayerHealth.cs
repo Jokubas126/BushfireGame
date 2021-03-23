@@ -28,7 +28,7 @@ public class PlayerHealth : MonoBehaviour
 
     void Update()
     {
-        if (healthManager.IsAllowedToBurn(transform))
+        if (healthManager.IsAllowedToBurn(transform.position))
         {
             StartCoroutine(healthManager.Burn());
         }

@@ -20,7 +20,7 @@ public class AnimalHealth : MonoBehaviour
 
     void Update()
     {
-        if (healthManager.IsAllowedToBurn(transform))
+        if (healthManager.IsAllowedToBurn(transform.position))
         {
             StartCoroutine(healthManager.Burn());
         }

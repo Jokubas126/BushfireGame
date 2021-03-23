@@ -17,16 +17,16 @@ public class HealthManager
         this.burnReactivationTime = burnReactivationTime;
     }
 
-    public bool IsAllowedToBurn(Transform transform)
+    public bool IsAllowedToBurn(Vector3 objectPosition)
     {
-        return !isCheckingBurn && IsTileOnFire(transform);
+        return !isCheckingBurn && IsTileOnFire(objectPosition);
     }
 
-    private bool IsTileOnFire(Transform transform)
+    private bool IsTileOnFire(Vector3 position)
     {
         int layerMask = 1 << 9; // layer of map tile
 
-        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 3, layerMask))
+        if (Physics.Raycast(position, Vector3.down, out RaycastHit hit, 3, layerMask))
         {
             TileFire tileBelow = hit.collider.gameObject.GetComponentInParent<TileFire>();
             if (tileBelow != null)   //Make sure we are above tile
