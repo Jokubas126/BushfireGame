@@ -200,6 +200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 4
   rotateSpeed: 250
+  noMovementRotSteps: 16
 --- !u!114 &8492131918732242119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,7 +229,6 @@ MonoBehaviour:
   health: 100
   fireDamage: 10
   burnReactivationTime: 0.5
-  isCheckingBurn: 0
 --- !u!1 &8492131920253850170
 GameObject:
   m_ObjectHideFlags: 0
