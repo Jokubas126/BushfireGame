@@ -47,7 +47,8 @@ public class HoldObject : MonoBehaviour
     { 
         pickedUpObject = targetedObject;
         pickedObjectRotation = pickedUpObject.transform.rotation;
-        animator.Play("KoalaUp");
+        animator.Play("UpperBody.KoalaUp");
+        animator.Play("Hands.KoalaUp");
         animator.SetBool("isHolding", true);
     }
 
@@ -66,7 +67,8 @@ public class HoldObject : MonoBehaviour
         pickedUpObject.transform.rotation = pickedObjectRotation;
         pickedUpObject.transform.parent = null;
         pickedUpObject = null;
-        animator.Play("KoalaDown");
+        animator.Play("UpperBody.KoalaDown");
+        animator.Play("Hands.KoalaDown");
         animator.SetBool("isHolding", false);
     }
 

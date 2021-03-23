@@ -71,7 +71,8 @@ public class PlayerHealth : MonoBehaviour
     {
         isCheckingBurn = true;
         health -= fireDamage;
-        animator.Play("Hurt");
+        animator.Play("UpperBody.Hurt");
+        animator.Play("Hands.Hurt");
         yield return new WaitForSeconds(burnReactivationTime);
         isCheckingBurn = false;
         yield return null;

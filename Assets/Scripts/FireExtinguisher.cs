@@ -48,7 +48,8 @@ public class FireExtinguisher : MonoBehaviour
     private IEnumerator Extinguish()
     {
         isShooting = true;
-        animator.Play("Extinguish");
+        animator.Play("UpperBody.Extinguish");
+        animator.Play("Hands.Extinguish");
         for (int i = 0; i < singleChargeSize; i++)
         {
             yield return new WaitForSeconds(0.05f);
