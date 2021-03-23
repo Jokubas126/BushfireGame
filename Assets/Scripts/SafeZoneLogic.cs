@@ -56,10 +56,13 @@ public class SafeZoneLogic : MonoBehaviour
 
     private IEnumerator LocateObjects() //All objects will have to have spawned before the safetyzone can locate them. Better solution will be to run a function from mapmanager when it's done loading all tiles.
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         objectsFound = true;
         player = GameObject.FindGameObjectWithTag("Player");
         waterHose = player.transform.Find("WaterHose").gameObject;
-        GameObject.Find("Canvas").GetComponent<Score>().enabled = true;
+        animalsAlive = GameObject.FindGameObjectsWithTag("PickableObject").ToList();
+        Score scoreScript = GameObject.Find("Canvas").GetComponent<Score>();
+        scoreScript.enabled = true;
+        scoreScript.animalsAtStart = animalsAlive.Count;
     }
 }
