@@ -7,6 +7,7 @@ public class SafeZoneLogic : MonoBehaviour
 {
     private GameObject player;
     private GameObject waterHose;
+    private GameObject canvas;
     [SerializeField]
     private int radius;
     public List<GameObject> animalsAlive;
@@ -37,10 +38,7 @@ public class SafeZoneLogic : MonoBehaviour
                     }
                 ).Count;
 
-            if (animalsSaved == animalsAlive.Count)
-            {
-                GameObject.Find("Canvas").transform.Find("WinText").gameObject.SetActive(true);
-            }
+            canvas.transform.Find("WinText").gameObject.SetActive(animalsSaved == animalsAlive.Count && IsTargetInRange(player, radius));
         }
     }
 
@@ -64,5 +62,6 @@ public class SafeZoneLogic : MonoBehaviour
         Score scoreScript = GameObject.Find("Canvas").GetComponent<Score>();
         scoreScript.enabled = true;
         scoreScript.animalsAtStart = animalsAlive.Count;
+        canvas = GameObject.Find("Canvas");
     }
 }
