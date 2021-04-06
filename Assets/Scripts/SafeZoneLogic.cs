@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Linq;
 
 public class SafeZoneLogic : MonoBehaviour
@@ -43,11 +44,19 @@ public class SafeZoneLogic : MonoBehaviour
             {
                 winText.SetActive(true);
                 hasPlayerWon = true;
+                StartCoroutine(ReturnToLevelSelect());
             }
         }
     }
 
-    private bool IsTargetInRange(GameObject target, int closeRange)
+    private IEnumerator ReturnToLevelSelect()
+    {
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene("LevelSelect", LoadSceneMode.Single);
+    }
+
+
+        private bool IsTargetInRange(GameObject target, int closeRange)
     {
         float dist = Vector3.Distance(target.transform.position, gameObject.transform.position);
         if (dist <= closeRange)
