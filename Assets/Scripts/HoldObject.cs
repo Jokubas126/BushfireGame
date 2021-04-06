@@ -49,6 +49,7 @@ public class HoldObject : MonoBehaviour
     IEnumerator PickUp()
     {
         setPlayerControl(false);
+        GetComponent<PlayerMovement>().isKoalaPickedUp = true;
         animator.Play("UpperBody.KoalaUp");
         animator.Play("Hands.KoalaUp");
         animator.SetBool("isHolding", true);
@@ -70,6 +71,7 @@ public class HoldObject : MonoBehaviour
     IEnumerator Release()
     {
         setPlayerControl(false);
+        GetComponent<PlayerMovement>().isKoalaPickedUp = false;
         pickedUpObject.transform.position = GetPutPosition();
         pickedUpObject.transform.rotation = pickedObjectRotation;
         pickedUpObject.transform.parent = null;
