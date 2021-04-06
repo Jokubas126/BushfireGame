@@ -94,9 +94,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b37bf9ab07b5ec4d9c5c2c8a8f282ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  singleChargeSize: 20
-  chargeSize: 20
-  shootingDelay: 0.1
+  tankSize: 100
+  waterDropDelay: 0.05
   chargeVelocity: 5
   extinguisherSpread: 0.4
   isUnderPlayerControl: 1
