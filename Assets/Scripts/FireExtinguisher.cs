@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 public class FireExtinguisher : MonoBehaviour
 {
-    public int tankSize = 100;
-    public float waterDropDelay = 0.05f;
+    public int tankSize = 200;
+    public float waterDropDelay = 0.02f;
     public float chargeVelocity = 6f;
-    public float extinguisherSpread = 0.8f;
+    public float extinguisherSpread = 0.2f;
     private Animator animator;
     public bool isUnderPlayerControl = true;
 
@@ -52,7 +52,7 @@ public class FireExtinguisher : MonoBehaviour
         animator.Play("Hands.Extinguish");
         GameObject waterDrip = Instantiate(waterPrefab, transform.position, Quaternion.identity);
         waterDrip.GetComponent<Rigidbody>().velocity = transform.TransformDirection(
-            new Vector3(Random.Range(-extinguisherSpread, extinguisherSpread), 1, Random.Range(-extinguisherSpread, extinguisherSpread)) * chargeVelocity
+            new Vector3(Random.Range(-extinguisherSpread*2, extinguisherSpread*2), 1, Random.Range(-extinguisherSpread, extinguisherSpread)) * chargeVelocity
         );
         waterLeft--;
         yield return new WaitForSeconds(waterDropDelay);

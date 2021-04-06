@@ -26,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 659941250255433978}
-  m_LocalRotation: {x: 0, y: 0.76696366, z: 0.6416906, w: 0}
-  m_LocalPosition: {x: 0.2, y: -0.4, z: 0.65}
+  m_LocalRotation: {x: 0, y: 0.6384321, z: 0.7696782, w: 0}
+  m_LocalPosition: {x: 0.2, y: -0.428, z: 0.198}
   m_LocalScale: {x: 0.19464283, y: 0.19464283, z: 0.19464283}
   m_Children: []
   m_Father: {fileID: 8492131918732242116}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -79.836, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: -100.65, y: 180, z: 0}
 --- !u!33 &2232384424184736523
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -94,10 +94,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b37bf9ab07b5ec4d9c5c2c8a8f282ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tankSize: 100
-  waterDropDelay: 0.05
-  chargeVelocity: 5
-  extinguisherSpread: 0.4
+  tankSize: 175
+  waterDropDelay: 0.02
+  chargeVelocity: 10
+  extinguisherSpread: 0.2
   isUnderPlayerControl: 1
   waterPrefab: {fileID: 6583732904180852610, guid: 1751d1176c43fe44fbf1b9315d8cc9d3, type: 3}
 --- !u!1 &8492131918732242113
@@ -204,6 +204,7 @@ MonoBehaviour:
   rotateSpeed: 250
   noMovementRotSteps: 16
   isUnderPlayerControl: 1
+  koalaCarrySpeedMultiplier: 0.8
 --- !u!114 &8492131918732242119
 MonoBehaviour:
   m_ObjectHideFlags: 0
