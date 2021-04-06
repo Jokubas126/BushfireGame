@@ -9,16 +9,13 @@ public class PlayerHealth : MonoBehaviour
 {
     private const float shakeDeformCoef = 0.01f;
 
-    [SerializeField]
-    private float health = 100f;
-    [SerializeField]
-    private float fireDamage = 10f;
-    [SerializeField]
-    private float burnReactivationTime = 0.5f;
+    public float health = 100f;
+    public float fireDamage = 10f;
+    public float burnReactivationTime = 0.5f;
 
-    [SerializeField] private float shakeIntensity;
-    [SerializeField] private float shakeDecay;
-    private GameObject camera;
+    public float shakeIntensity;
+    public float shakeDecay;
+    private GameObject mainCamera;
 
     private Slider healthSlider;
 
@@ -33,7 +30,7 @@ public class PlayerHealth : MonoBehaviour
         animator = GetComponent<Animator>();
 
         healthManager = new HealthManager(health, fireDamage, burnReactivationTime);
-        camera = GameObject.FindGameObjectWithTag("MainCamera");
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
     }
 
     void Update()
@@ -68,11 +65,11 @@ public class PlayerHealth : MonoBehaviour
 
     IEnumerator ShakeCamera()
     {
-        Quaternion originalRot = camera.transform.rotation;
+        Quaternion originalRot = mainCamera.transform.rotation;
         float currentShakeIntensity = shakeIntensity;
         while (currentShakeIntensity > 0)
         {
-            camera.transform.rotation = new Quaternion(
+            mainCamera.transform.rotation = new Quaternion(
                GetDeformedRotation(originalRot.x, currentShakeIntensity),
                GetDeformedRotation(originalRot.y, currentShakeIntensity),
                GetDeformedRotation(originalRot.z, currentShakeIntensity),

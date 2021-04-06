@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 animator.SetBool("isWalking", false);
-                Vector3 newRotation = transform.rotation.ToEulerAngles();
+                Vector3 newRotation = transform.rotation.eulerAngles;
                 newRotation.y = Mathf.Round(newRotation.y * 180 / Mathf.PI / (360f / noMovementRotSteps)) * (360f / noMovementRotSteps);
                 Quaternion rotation = Quaternion.Euler(newRotation);
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, rotateSpeed * Time.fixedDeltaTime);

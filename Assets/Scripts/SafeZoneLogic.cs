@@ -8,8 +8,7 @@ public class SafeZoneLogic : MonoBehaviour
     private GameObject player;
     private GameObject waterHose;
     private GameObject winText;
-    [SerializeField]
-    private int radius;
+    public int radius;
     public List<GameObject> animalsAlive;
     public int animalsSaved;
 
