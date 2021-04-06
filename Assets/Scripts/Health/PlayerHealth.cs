@@ -21,6 +21,10 @@ public class PlayerHealth : MonoBehaviour
 
     private HealthManager healthManager;
 
+    [SerializeField]
+    private AudioClip[] hurtSound = new AudioClip[0];
+    private AudioSource audioSource;
+
     Animator animator;
 
     void Start()
@@ -31,6 +35,8 @@ public class PlayerHealth : MonoBehaviour
 
         healthManager = new HealthManager(health, fireDamage, burnReactivationTime);
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        audioSource = gameObject.AddComponent<AudioSource>() as AudioSource;
+
     }
 
     void Update()
@@ -46,7 +52,17 @@ public class PlayerHealth : MonoBehaviour
             SceneManager.LoadScene("LevelSelect", LoadSceneMode.Single);
         }
     }
-
+    void PlayHurtSound()
+    {
+        if (audioSource != null && !audioSource.isPlaying)
+        {
+            int n = Random.Range(1, hurtSound.Length);
+            audioSource.clip = hurtSound[n];
+            audioSource.Play();
+            hurtSound[n] = hurtSound[0];
+            hurtSound[0] = audioSource.clip;
+        }
+    }
     void OnGUI()
     {
         healthSlider.value = healthManager.health;
@@ -59,6 +75,7 @@ public class PlayerHealth : MonoBehaviour
         {
             animator.Play("Hands.Hurt");
         }
+        PlayHurtSound();
         yield return new WaitForSeconds(burnReactivationTime);
         yield return null;
     }
