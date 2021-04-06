@@ -43,7 +43,7 @@ public class PlayerHealth : MonoBehaviour
         }
         if (healthManager.IsDead)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadScene("LevelSelect", LoadSceneMode.Single);
         }
     }
 
