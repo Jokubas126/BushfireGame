@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Linq;
+using cakeslice;
 
 public class SafeZoneLogic : MonoBehaviour
 {
@@ -11,7 +12,8 @@ public class SafeZoneLogic : MonoBehaviour
     private GameObject winText;
     public int radius;
     public List<GameObject> animalsAlive;
-    public int animalsSaved;
+    public List<GameObject> animalsSaved;
+    public int animalsSavedCount;
 
     private bool objectsFound = false;
 
@@ -38,9 +40,15 @@ public class SafeZoneLogic : MonoBehaviour
                     {
                         return IsTargetInRange(animal, radius);
                     }
-                ).Count;
+                );
 
-            if (animalsSaved == animalsAlive.Count && IsTargetInRange(player, radius))
+            animalsSavedCount = animalsSaved.Count;
+            foreach(GameObject animal in animalsSaved)
+            {
+                animal.transform.Find("koala").GetComponent<Outline>().enabled = false;
+            }
+
+            if (animalsSavedCount == animalsAlive.Count && IsTargetInRange(player, radius))
             {
                 winText.SetActive(true);
                 hasPlayerWon = true;
@@ -56,7 +64,7 @@ public class SafeZoneLogic : MonoBehaviour
     }
 
 
-        private bool IsTargetInRange(GameObject target, int closeRange)
+    private bool IsTargetInRange(GameObject target, int closeRange)
     {
         float dist = Vector3.Distance(target.transform.position, gameObject.transform.position);
         if (dist <= closeRange)
