@@ -10,6 +10,8 @@ public class SafeZoneLogic : MonoBehaviour
     private GameObject player;
     private GameObject waterHose;
     private GameObject winText;
+    private Score scoreScript;
+
     public int radius;
     public List<GameObject> animalsAlive;
     public List<GameObject> animalsSaved;
@@ -82,9 +84,9 @@ public class SafeZoneLogic : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         waterHose = player.transform.Find("WaterHose").gameObject;
         animalsAlive = GameObject.FindGameObjectsWithTag("PickableObject").ToList();
-        Score scoreScript = GameObject.Find("Canvas").GetComponent<Score>();
+        scoreScript = GameObject.Find("Canvas").GetComponent<Score>();
         scoreScript.enabled = true;
-        scoreScript.animalsAtStart = animalsAlive.Count;
+        scoreScript.LoadAnimalsAtStart(animalsAlive.Count);
         winText = GameObject.Find("Canvas").transform.Find("WinText").gameObject;
         objectsFound = true;
     }
