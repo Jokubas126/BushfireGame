@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using cakeslice;
 
 public class HoldObject : MonoBehaviour
 {
@@ -52,6 +53,7 @@ public class HoldObject : MonoBehaviour
         animator.Play("UpperBody.KoalaUp");
         animator.Play("Hands.KoalaUp");
         animator.SetBool("isHolding", true);
+        targetedObject.transform.Find("koala").GetComponent<Outline>().enabled = false;
         yield return new WaitForSeconds(pickUpTime);
         pickedUpObject = targetedObject;
         pickedObjectRotation = pickedUpObject.transform.rotation;
@@ -73,6 +75,7 @@ public class HoldObject : MonoBehaviour
         pickedUpObject.transform.position = GetPutPosition();
         pickedUpObject.transform.rotation = pickedObjectRotation;
         pickedUpObject.transform.parent = null;
+        pickedUpObject.transform.Find("koala").GetComponent<Outline>().enabled = true;
         pickedUpObject = null;
         animator.Play("UpperBody.KoalaDown");
         animator.Play("Hands.KoalaDown");
@@ -98,7 +101,7 @@ public class HoldObject : MonoBehaviour
         {
             if (hit.collider.gameObject.CompareTag("PickableObject"))
             {
-                pickupHint.SetActive(pickedUpObject == null);
+                pickupHint.SetActive(pickedUpObject == null && isUnderPlayerControl);
                 hit.collider.gameObject.GetComponent<Highlightable>().Highlight();
                 return hit.collider.gameObject;
             }

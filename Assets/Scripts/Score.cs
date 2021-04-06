@@ -18,7 +18,7 @@ public class Score : MonoBehaviour
 
     void Update()
     {
-        animalsSavedTextMesh.SetText("Animals saved: {0}/{1} ", safeZone.animalsSaved, animalsAtStart);
+        animalsSavedTextMesh.SetText("Animals saved: {0}/{1} ", safeZone.animalsSavedCount, animalsAtStart);
     }
 
     public void AnimalDied()
