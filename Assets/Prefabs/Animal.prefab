@@ -141,6 +141,11 @@ MonoBehaviour:
   health: 50
   fireDamage: 7
   burnReactivationTime: 0.5
+  koalaHurtSound:
+  - {fileID: 8300000, guid: 1ac9a5074e084ca47846ed5916d72f94, type: 3}
+  - {fileID: 8300000, guid: 1efc25cc810523e4388acfa7605c6724, type: 3}
+  - {fileID: 8300000, guid: e0dddc6cdf663c04b83f7ec4a983e92a, type: 3}
+  - {fileID: 8300000, guid: bcb0eab9d1dfb6649bf456cd0b08ede8, type: 3}
 --- !u!1001 &2651138283381020051
 PrefabInstance:
   m_ObjectHideFlags: 0

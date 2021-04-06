@@ -18,10 +18,14 @@ public class PlayerMovement : MonoBehaviour
     private static readonly float waterMovementCoef = 0.5f;
     private static readonly float bushMovementCoef = 0.7f;
 
+    [SerializeField] private AudioClip[] footstepSounds;
+    private AudioSource audioSource;
+
     private void Start()
     {
         controller = gameObject.AddComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        audioSource = gameObject.AddComponent<AudioSource>() as AudioSource;
     }
 
     void FixedUpdate()
@@ -39,18 +43,31 @@ public class PlayerMovement : MonoBehaviour
                 animator.SetBool("isWalking", true);
                 var r = Quaternion.LookRotation(move);
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, r, rotateSpeed * Time.fixedDeltaTime);
+                PlayFootSteps();
+
             }
             else
             {
                 animator.SetBool("isWalking", false);
-                Vector3 newRotation = transform.rotation.eulerAngles;
+                Vector3 newRotation = transform.rotation.ToEulerAngles();
                 newRotation.y = Mathf.Round(newRotation.y * 180 / Mathf.PI / (360f / noMovementRotSteps)) * (360f / noMovementRotSteps);
                 Quaternion rotation = Quaternion.Euler(newRotation);
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, rotateSpeed * Time.fixedDeltaTime);
             }
         }
     }
-
+    private void PlayFootSteps()
+    {
+        if (audioSource != null && !audioSource.isPlaying)
+        {
+            int n = Random.Range(1, footstepSounds.Length);
+            audioSource.clip = footstepSounds[n];
+            audioSource.Play();
+            footstepSounds[n] = footstepSounds[0];
+            footstepSounds[0] = audioSource.clip;
+        }
+        audioSource.volume = 0.1F;
+    }
     private float GetMovementCoef()
     {
         int layerMask = 1 << 9; // layer of map tile
