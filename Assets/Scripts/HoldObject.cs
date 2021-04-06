@@ -31,10 +31,10 @@ public class HoldObject : MonoBehaviour
             {
                 if (targetedObject != null)
                 {
-                    PickUp();
+                    StartCoroutine(PickUp());
                 }
             }
-            else Release();
+            else StartCoroutine(Release());
         }
         CarryObject();
     }
@@ -44,14 +44,16 @@ public class HoldObject : MonoBehaviour
         return pickedUpObject;
     }
 
-    private void PickUp()
-    { 
-        pickedUpObject = targetedObject;
-        pickedObjectRotation = pickedUpObject.transform.rotation;
+    IEnumerator PickUp()
+    {
+        setPlayerControl(false);
         animator.Play("UpperBody.KoalaUp");
         animator.Play("Hands.KoalaUp");
         animator.SetBool("isHolding", true);
-        StartCoroutine(TakeAwayControls());
+        yield return new WaitForSeconds(pickUpTime);
+        pickedUpObject = targetedObject;
+        pickedObjectRotation = pickedUpObject.transform.rotation;
+        setPlayerControl(true);
     }
 
     private void CarryObject()
@@ -63,8 +65,9 @@ public class HoldObject : MonoBehaviour
         }
     }
 
-    private void Release()
+    IEnumerator Release()
     {
+        setPlayerControl(false);
         pickedUpObject.transform.position = GetPutPosition();
         pickedUpObject.transform.rotation = pickedObjectRotation;
         pickedUpObject.transform.parent = null;
@@ -72,7 +75,8 @@ public class HoldObject : MonoBehaviour
         animator.Play("UpperBody.KoalaDown");
         animator.Play("Hands.KoalaDown");
         animator.SetBool("isHolding", false);
-        StartCoroutine(TakeAwayControls());
+        yield return new WaitForSeconds(pickUpTime);
+        setPlayerControl(true);
     }
 
     private Vector3 GetPutPosition()
@@ -97,13 +101,6 @@ public class HoldObject : MonoBehaviour
             }
         }
         return null;
-    }
-
-    private IEnumerator TakeAwayControls()
-    {
-        setPlayerControl(false);
-        yield return new WaitForSeconds(pickUpTime);
-        setPlayerControl(true);
     }
 
     private void setPlayerControl(bool isPlayerControl)
