@@ -6,14 +6,16 @@ using UnityEngine.UI;
 
 public class FireExtinguisher : MonoBehaviour
 {
-    public int tankSize = 100;
-    public float waterDropDelay = 0.05f;
+    public int tankSize = 200;
+    public float waterDropDelay = 0.02f;
     public float chargeVelocity = 6f;
-    public float extinguisherSpread = 0.8f;
+    public float extinguisherSpread = 0.2f;
     private Animator animator;
     public bool isUnderPlayerControl = true;
 
     private int waterLeft;
+    private ParticleSystem particles;
+    bool particlesStopped = true;
 
     private bool isShooting;
 
@@ -33,14 +35,33 @@ public class FireExtinguisher : MonoBehaviour
         playerHoldObject = GameObject.FindGameObjectWithTag("Player").GetComponent<HoldObject>();
         extinguisherSlider = GameObject.Find("ExtinguisherBar").GetComponent<Slider>();
         extinguisherSlider.maxValue = tankSize;
+        particles = transform.Find("Water").GetComponent<ParticleSystem>();
+        particles.Stop();
         audioSource = gameObject.AddComponent<AudioSource>() as AudioSource;
     }
 
     private void Update()
     {
-        if (Input.GetKey("space") && waterLeft > 0 && !isShooting && !playerHoldObject.IsHoldingObject && isUnderPlayerControl)
+        if (Input.GetKey("space") && waterLeft > 0 && !playerHoldObject.IsHoldingObject && isUnderPlayerControl)
         {
-            StartCoroutine(Extinguish());
+            if(particlesStopped)
+            {
+                if (particlesStopped)
+                    particles.Clear();
+                particlesStopped = false;
+                particles.Play();
+            }
+            if(!isShooting)
+                StartCoroutine(Extinguish());
+        }
+        else
+        {
+            if (particles.isPlaying)
+            {
+                particlesStopped = true;
+                particles.Stop();
+            }
+                
         }
         StopExtinguishSound();
     }
@@ -73,7 +94,7 @@ public class FireExtinguisher : MonoBehaviour
         PlayExtinguishSound();
         GameObject waterDrip = Instantiate(waterPrefab, transform.position, Quaternion.identity);
         waterDrip.GetComponent<Rigidbody>().velocity = transform.TransformDirection(
-            new Vector3(Random.Range(-extinguisherSpread, extinguisherSpread), 1, Random.Range(-extinguisherSpread, extinguisherSpread)) * chargeVelocity
+            new Vector3(Random.Range(-extinguisherSpread*2, extinguisherSpread*2), 1, Random.Range(-extinguisherSpread, extinguisherSpread)) * chargeVelocity
         );
         waterLeft--;
         yield return new WaitForSeconds(waterDropDelay);
