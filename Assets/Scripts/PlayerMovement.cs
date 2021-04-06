@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public float rotateSpeed = 250.0f;
     public int noMovementRotSteps = 16;
     public bool isUnderPlayerControl = true;
+    public float koalaCarrySpeedMultiplier = 0.8f;
 
     private static readonly float grassMovementCoef = 1f;
     private static readonly float treeMovementCoef = 0.35f;
@@ -29,7 +30,10 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
             move = Vector3.ClampMagnitude(move, 1f);
-            controller.Move(move * Time.fixedDeltaTime * playerSpeed * GetMovementCoef());
+            if(GetComponent<HoldObject>().IsHoldingObject)
+                controller.Move(move * Time.fixedDeltaTime * playerSpeed * GetMovementCoef() * koalaCarrySpeedMultiplier);
+            else
+                controller.Move(move * Time.fixedDeltaTime * playerSpeed * GetMovementCoef());
             if (move != Vector3.zero)
             {
                 animator.SetBool("isWalking", true);

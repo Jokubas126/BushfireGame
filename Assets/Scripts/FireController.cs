@@ -8,7 +8,7 @@ public class FireController : MonoBehaviour
 
     public int fireTickDelay = 50;
     public int fireTickCounter;
-    public float fireStartResistanceMultiplier = 0.3f;
+    public float fireStartResistanceMultiplier = 0.1f;
 
     private int mapSizeX;
     private int mapSizeY;

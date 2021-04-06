@@ -222,54 +222,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 774963028, guid: 2f6a7bc8f1aa8914880119a6e2a10a96, type: 3}
-      propertyPath: fireStartX.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 774963028, guid: 2f6a7bc8f1aa8914880119a6e2a10a96, type: 3}
-      propertyPath: fireStartZ.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 774963028, guid: 2f6a7bc8f1aa8914880119a6e2a10a96, type: 3}
-      propertyPath: fireStartX.Array.data[1]
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 774963028, guid: 2f6a7bc8f1aa8914880119a6e2a10a96, type: 3}
-      propertyPath: fireStartX.Array.data[0]
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 774963028, guid: 2f6a7bc8f1aa8914880119a6e2a10a96, type: 3}
-      propertyPath: fireStartZ.Array.data[1]
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 774963028, guid: 2f6a7bc8f1aa8914880119a6e2a10a96, type: 3}
-      propertyPath: fireStartZ.Array.data[0]
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 774963028, guid: 2f6a7bc8f1aa8914880119a6e2a10a96, type: 3}
-      propertyPath: fireStartX.Array.data[2]
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 774963028, guid: 2f6a7bc8f1aa8914880119a6e2a10a96, type: 3}
-      propertyPath: fireStartZ.Array.data[2]
-      value: 24
-      objectReference: {fileID: 0}
-    - target: {fileID: 774963028, guid: 2f6a7bc8f1aa8914880119a6e2a10a96, type: 3}
-      propertyPath: fireStartX.Array.data[3]
-      value: 22
-      objectReference: {fileID: 0}
-    - target: {fileID: 774963028, guid: 2f6a7bc8f1aa8914880119a6e2a10a96, type: 3}
-      propertyPath: fireStartZ.Array.data[3]
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 774963028, guid: 2f6a7bc8f1aa8914880119a6e2a10a96, type: 3}
-      propertyPath: fireTickDelay
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 774963028, guid: 2f6a7bc8f1aa8914880119a6e2a10a96, type: 3}
-      propertyPath: fireStartResistanceMultiplier
-      value: 0.4
-      objectReference: {fileID: 0}
     - target: {fileID: 1920423646662940784, guid: 2f6a7bc8f1aa8914880119a6e2a10a96, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -317,10 +269,6 @@ PrefabInstance:
     - target: {fileID: 3978994091968037556, guid: 2f6a7bc8f1aa8914880119a6e2a10a96, type: 3}
       propertyPath: m_Name
       value: MapManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 5405522050752498140, guid: 2f6a7bc8f1aa8914880119a6e2a10a96, type: 3}
-      propertyPath: levelFileName
-      value: level1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f6a7bc8f1aa8914880119a6e2a10a96, type: 3}
