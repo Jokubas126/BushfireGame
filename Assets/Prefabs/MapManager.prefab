@@ -56,7 +56,7 @@ MonoBehaviour:
   safezonePrefab: {fileID: 3102605569267121844, guid: e765fc42b26166b42bfd4660fee72734, type: 3}
   mapSizeX: 0
   mapSizeY: 0
-  levelFileName: 
+  levelFileName: level1
 --- !u!114 &774963028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,3 +71,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireTickDelay: 20
   fireTickCounter: 0
+  fireStartResistanceMultiplier: 0.2
