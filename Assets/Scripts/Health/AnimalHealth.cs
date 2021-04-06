@@ -49,6 +49,7 @@ public class AnimalHealth : MonoBehaviour
             koalaHurtSound[n] = koalaHurtSound[0];
             koalaHurtSound[0] = audioSourceHurt.clip;
         }
+        audioSourceHurt.spatialBlend = 1;
     }
     
 
