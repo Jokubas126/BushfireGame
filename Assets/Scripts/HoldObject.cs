@@ -12,6 +12,7 @@ public class HoldObject : MonoBehaviour
     public bool isUnderPlayerControl = true;
     public float interactionDistance = 10f;
     public float pickUpTime = 1f;
+    private GameObject pickupHint;
 
     public bool IsHoldingObject
     {
@@ -20,6 +21,7 @@ public class HoldObject : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        pickupHint = GameObject.Find("Canvas").transform.Find("PickupHint").gameObject;
     }
 
     void Update()
@@ -96,10 +98,15 @@ public class HoldObject : MonoBehaviour
         {
             if (hit.collider.gameObject.CompareTag("PickableObject"))
             {
+                if(pickedUpObject == null)
+                    pickupHint.SetActive(true);
+                if(pickedUpObject != null)
+                    pickupHint.SetActive(false);
                 hit.collider.gameObject.GetComponent<Highlightable>().Highlight();
                 return hit.collider.gameObject;
             }
         }
+        pickupHint.SetActive(false);
         return null;
     }
 
