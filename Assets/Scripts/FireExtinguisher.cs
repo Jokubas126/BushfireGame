@@ -24,6 +24,8 @@ public class FireExtinguisher : MonoBehaviour
 
     private Slider extinguisherSlider;
 
+    public AudioClip extinguishSound;
+    private AudioSource audioSource;
     private void Start()
     {
         animator = transform.parent.GetComponent<Animator>();
@@ -35,6 +37,7 @@ public class FireExtinguisher : MonoBehaviour
         extinguisherSlider.maxValue = tankSize;
         particles = transform.Find("Water").GetComponent<ParticleSystem>();
         particles.Stop();
+        audioSource = gameObject.AddComponent<AudioSource>() as AudioSource;
     }
 
     private void Update()
@@ -60,17 +63,35 @@ public class FireExtinguisher : MonoBehaviour
             }
                 
         }
+        StopExtinguishSound();
     }
 
     void OnGUI()
     {
         extinguisherSlider.value = waterLeft;
     }
+    void PlayExtinguishSound()
+    {
+        if (audioSource != null && !audioSource.isPlaying)
+        {
+            audioSource.clip = extinguishSound;
+            audioSource.Play();
+        }
+        audioSource.volume = 0.5F;
+    }
+    void StopExtinguishSound()
+    {
+        if (!isShooting)
+        {
+            audioSource.Pause();
+        }
 
+    }
     private IEnumerator Extinguish()
     {
         isShooting = true;
         animator.Play("Hands.Extinguish");
+        PlayExtinguishSound();
         GameObject waterDrip = Instantiate(waterPrefab, transform.position, Quaternion.identity);
         waterDrip.GetComponent<Rigidbody>().velocity = transform.TransformDirection(
             new Vector3(Random.Range(-extinguisherSpread*2, extinguisherSpread*2), 1, Random.Range(-extinguisherSpread, extinguisherSpread)) * chargeVelocity
