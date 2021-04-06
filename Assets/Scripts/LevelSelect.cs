@@ -7,13 +7,11 @@ public class LevelSelect : MonoBehaviour
 {
     public void LoadTutorial()
     {
-        Debug.Log("Loading tutorial");
         SceneManager.LoadScene("Tutorial", LoadSceneMode.Single);
     }
 
     public void LoadLevel1()
     {
-        Debug.Log("Loading level 1");
         SceneManager.LoadScene("Master", LoadSceneMode.Single);
     }
 }
