@@ -36,7 +36,7 @@ public class FireExtinguisher : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown("e") && chargesLeft > 0 && !isShooting && !playerHoldObject.IsHoldingObject && isUnderPlayerControl)
+        if (Input.GetKeyDown("space") && chargesLeft > 0 && !isShooting && !playerHoldObject.IsHoldingObject && isUnderPlayerControl)
         {
             StartCoroutine(Extinguish());
         }
