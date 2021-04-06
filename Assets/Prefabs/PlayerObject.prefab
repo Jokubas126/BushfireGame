@@ -100,6 +100,7 @@ MonoBehaviour:
   extinguisherSpread: 0.4
   isUnderPlayerControl: 1
   waterPrefab: {fileID: 6583732904180852610, guid: 1751d1176c43fe44fbf1b9315d8cc9d3, type: 3}
+  extinguishSound: {fileID: 8300000, guid: e09fc9dfa3130bc4386da0433e8b81f7, type: 3}
 --- !u!1 &8492131918732242113
 GameObject:
   m_ObjectHideFlags: 0
