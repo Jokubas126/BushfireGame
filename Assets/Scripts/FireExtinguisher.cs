@@ -14,6 +14,8 @@ public class FireExtinguisher : MonoBehaviour
     public bool isUnderPlayerControl = true;
 
     private int waterLeft;
+    private ParticleSystem particles;
+    bool particlesStopped = true;
 
     private bool isShooting;
 
@@ -31,13 +33,32 @@ public class FireExtinguisher : MonoBehaviour
         playerHoldObject = GameObject.FindGameObjectWithTag("Player").GetComponent<HoldObject>();
         extinguisherSlider = GameObject.Find("ExtinguisherBar").GetComponent<Slider>();
         extinguisherSlider.maxValue = tankSize;
+        particles = transform.Find("Water").GetComponent<ParticleSystem>();
+        particles.Stop();
     }
 
     private void Update()
     {
-        if (Input.GetKey("space") && waterLeft > 0 && !isShooting && !playerHoldObject.IsHoldingObject && isUnderPlayerControl)
+        if (Input.GetKey("space") && waterLeft > 0 && !playerHoldObject.IsHoldingObject && isUnderPlayerControl)
         {
-            StartCoroutine(Extinguish());
+            if(particlesStopped)
+            {
+                if (particlesStopped)
+                    particles.Clear();
+                particlesStopped = false;
+                particles.Play();
+            }
+            if(!isShooting)
+                StartCoroutine(Extinguish());
+        }
+        else
+        {
+            if (particles.isPlaying)
+            {
+                particlesStopped = true;
+                particles.Stop();
+            }
+                
         }
     }
 
