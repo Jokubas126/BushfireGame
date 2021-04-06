@@ -6,15 +6,14 @@ using UnityEngine.UI;
 
 public class FireExtinguisher : MonoBehaviour
 {
-    public int singleChargeSize = 10;
-    public int chargeSize = 11;
-    public float shootingDelay = 0.8f;
+    public int tankSize = 100;
+    public float waterDropDelay = 0.05f;
     public float chargeVelocity = 6f;
     public float extinguisherSpread = 0.8f;
     private Animator animator;
     public bool isUnderPlayerControl = true;
 
-    private int chargesLeft;
+    private int waterLeft;
 
     private bool isShooting;
 
@@ -31,12 +30,12 @@ public class FireExtinguisher : MonoBehaviour
         RefillCharges();
         playerHoldObject = GameObject.FindGameObjectWithTag("Player").GetComponent<HoldObject>();
         extinguisherSlider = GameObject.Find("ExtinguisherBar").GetComponent<Slider>();
-        extinguisherSlider.maxValue = chargeSize;
+        extinguisherSlider.maxValue = tankSize;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown("space") && chargesLeft > 0 && !isShooting && !playerHoldObject.IsHoldingObject && isUnderPlayerControl)
+        if (Input.GetKey("space") && waterLeft > 0 && !isShooting && !playerHoldObject.IsHoldingObject && isUnderPlayerControl)
         {
             StartCoroutine(Extinguish());
         }
@@ -44,27 +43,24 @@ public class FireExtinguisher : MonoBehaviour
 
     void OnGUI()
     {
-        extinguisherSlider.value = chargesLeft;
+        extinguisherSlider.value = waterLeft;
     }
 
     private IEnumerator Extinguish()
     {
         isShooting = true;
         animator.Play("Hands.Extinguish");
-        for (int i = 0; i < singleChargeSize; i++)
-        {
-            yield return new WaitForSeconds(0.05f);
-            GameObject waterDrip = Instantiate(waterPrefab, transform.position, Quaternion.identity);
-            waterDrip.GetComponent<Rigidbody>().velocity = transform.TransformDirection(new Vector3(Random.Range(-extinguisherSpread, extinguisherSpread), 1, Random.Range(-extinguisherSpread, extinguisherSpread)) * chargeVelocity);
-        }
-
-        chargesLeft--;
-        yield return new WaitForSeconds(shootingDelay);
+        GameObject waterDrip = Instantiate(waterPrefab, transform.position, Quaternion.identity);
+        waterDrip.GetComponent<Rigidbody>().velocity = transform.TransformDirection(
+            new Vector3(Random.Range(-extinguisherSpread, extinguisherSpread), 1, Random.Range(-extinguisherSpread, extinguisherSpread)) * chargeVelocity
+        );
+        waterLeft--;
+        yield return new WaitForSeconds(waterDropDelay);
         isShooting = false;
     }
 
     public void RefillCharges()
     {
-        chargesLeft = chargeSize;
+        waterLeft = tankSize;
     }
 }
