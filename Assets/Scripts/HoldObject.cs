@@ -98,10 +98,7 @@ public class HoldObject : MonoBehaviour
         {
             if (hit.collider.gameObject.CompareTag("PickableObject"))
             {
-                if(pickedUpObject == null)
-                    pickupHint.SetActive(true);
-                if(pickedUpObject != null)
-                    pickupHint.SetActive(false);
+                    pickupHint.SetActive(pickedUpObject == null);
                 hit.collider.gameObject.GetComponent<Highlightable>().Highlight();
                 return hit.collider.gameObject;
             }
