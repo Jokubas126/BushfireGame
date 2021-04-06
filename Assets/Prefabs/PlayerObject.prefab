@@ -204,6 +204,10 @@ MonoBehaviour:
   rotateSpeed: 250
   noMovementRotSteps: 16
   isUnderPlayerControl: 1
+  koalaCarrySpeedMultiplier: 0.8
+  footstepSounds:
+  - {fileID: 8300000, guid: 90a84ffd03080f14087db9110cbbab55, type: 3}
+  - {fileID: 8300000, guid: d38d49c239ebd0b41a137d564dd95364, type: 3}
 --- !u!114 &8492131918732242119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,6 +240,10 @@ MonoBehaviour:
   burnReactivationTime: 0.5
   shakeIntensity: 0.5
   shakeDecay: 0.5
+  hurtSound:
+  - {fileID: 8300000, guid: fe366ed3c05d73143b4359e2450e3a20, type: 3}
+  - {fileID: 8300000, guid: a8aeb7025cf08cf4ba8d9076e77da1e0, type: 3}
+  - {fileID: 8300000, guid: 28ecd88beb0c0f24d8ac12de5a2bf2f9, type: 3}
 --- !u!95 &4198145236616031979
 Animator:
   serializedVersion: 3

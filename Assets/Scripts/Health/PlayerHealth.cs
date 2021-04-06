@@ -7,10 +7,6 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-
-    private AudioClip[] hurtSound = new AudioClip[0];
-    private AudioSource audioSource;
-
     private const float shakeDeformCoef = 0.01f;
 
     public float health = 100f;
@@ -21,10 +17,13 @@ public class PlayerHealth : MonoBehaviour
     public float shakeDecay;
     private GameObject mainCamera;
 
-
     private Slider healthSlider;
 
     private HealthManager healthManager;
+
+    [SerializeField]
+    private AudioClip[] hurtSound = new AudioClip[0];
+    private AudioSource audioSource;
 
     Animator animator;
 
@@ -35,9 +34,8 @@ public class PlayerHealth : MonoBehaviour
         animator = GetComponent<Animator>();
 
         healthManager = new HealthManager(health, fireDamage, burnReactivationTime);
-
-        audioSource = gameObject.AddComponent<AudioSource>() as AudioSource;
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        audioSource = gameObject.AddComponent<AudioSource>() as AudioSource;
 
     }
 
