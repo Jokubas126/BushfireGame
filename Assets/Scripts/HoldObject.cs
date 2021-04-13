@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using cakeslice;
 
 public class HoldObject : MonoBehaviour
 {
@@ -52,6 +53,7 @@ public class HoldObject : MonoBehaviour
         animator.Play("UpperBody.KoalaUp");
         animator.Play("Hands.KoalaUp");
         animator.SetBool("isHolding", true);
+        targetedObject.transform.Find("koala").GetComponent<Outline>().enabled = false;
         yield return new WaitForSeconds(pickUpTime);
         pickedUpObject = targetedObject;
         pickedObjectRotation = pickedUpObject.transform.rotation;
@@ -69,25 +71,47 @@ public class HoldObject : MonoBehaviour
 
     IEnumerator Release()
     {
-        setPlayerControl(false);
-        pickedUpObject.transform.position = GetPutPosition();
-        pickedUpObject.transform.rotation = pickedObjectRotation;
-        pickedUpObject.transform.parent = null;
-        pickedUpObject = null;
-        animator.Play("UpperBody.KoalaDown");
-        animator.Play("Hands.KoalaDown");
-        animator.SetBool("isHolding", false);
-        yield return new WaitForSeconds(pickUpTime);
-        setPlayerControl(true);
+        if (CanBeReleased())
+        {
+            setPlayerControl(false);
+            pickedUpObject.transform.position = GetPutPosition();
+            pickedUpObject.transform.rotation = pickedObjectRotation;
+            pickedUpObject.transform.parent = null;
+            pickedUpObject.transform.Find("koala").GetComponent<Outline>().enabled = true;
+            pickedUpObject = null;
+            animator.Play("UpperBody.KoalaDown");
+            animator.Play("Hands.KoalaDown");
+            animator.SetBool("isHolding", false);
+            yield return new WaitForSeconds(pickUpTime);
+            setPlayerControl(true);
+        }
     }
 
     private Vector3 GetPutPosition()
     {
         Vector3 putPosition;
-        putPosition.x = pickedUpObject.transform.position.x;
-        putPosition.z = pickedUpObject.transform.position.z;
+        putPosition.x = Mathf.Round(pickedUpObject.transform.position.x);
+        putPosition.z = Mathf.Round(pickedUpObject.transform.position.z);
         putPosition.y = floorHeight + pickedUpObject.transform.lossyScale.y / 2;
         return putPosition;
+    }
+
+    private bool CanBeReleased()
+    {
+        int layerMask = 1 << 9; // layer of map tile
+
+        if (Physics.Raycast(GetPutPosition(), Vector3.down, out RaycastHit hit, 3, layerMask))
+        {
+            switch (hit.collider.gameObject.tag)
+            {
+                case "Rock":
+                case "Water":
+                    return false;
+                default:
+                    return true;
+            }
+        }
+        return false;
     }
 
     private GameObject HighlightPickupable()
@@ -98,7 +122,7 @@ public class HoldObject : MonoBehaviour
         {
             if (hit.collider.gameObject.CompareTag("PickableObject"))
             {
-                pickupHint.SetActive(pickedUpObject == null);
+                pickupHint.SetActive(pickedUpObject == null && isUnderPlayerControl);
                 hit.collider.gameObject.GetComponent<Highlightable>().Highlight();
                 return hit.collider.gameObject;
             }
