@@ -50,6 +50,7 @@ MonoBehaviour:
   fireResistanceCurrent: 0
   fireDuration: 0
   isFireStartTile: 0
+  isTileBurnable: 1
 --- !u!114 &3011105377515792109
 MonoBehaviour:
   m_ObjectHideFlags: 0

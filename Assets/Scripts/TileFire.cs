@@ -10,6 +10,8 @@ public class TileFire : MonoBehaviour
     private ParticleSystem fireParticles;
     private Color originalColor;
     public bool isFireStartTile = false;
+    public bool isTileBurnable;
+    public bool isColorStatic;
 
     void Start()
     {
@@ -25,9 +27,9 @@ public class TileFire : MonoBehaviour
     {
         if (fireParticles != null)
         {
-            if (fireResistanceCurrent <= 0 && fireDuration > 0)
+            if (IsTileOnFire())
             {
-                if (!fireParticles.isEmitting)
+                if (!fireParticles.isEmitting && isTileBurnable)
                 {
                     fireParticles.Play();
                 }
@@ -38,11 +40,13 @@ public class TileFire : MonoBehaviour
                 {
                     fireParticles.Stop();
                 }
-                float H, S, V;
-                Color.RGBToHSV(originalColor, out H, out S, out V);
-                H = 0.1f + fireResistanceCurrent / fireResistanceMax * 0.13f;
-                GetComponentInChildren<Renderer>().material.color = Color.HSVToRGB(H, S, V);
             }
+        }
+        if (fireResistanceCurrent > 0 && !isColorStatic)
+        {
+            Color.RGBToHSV(originalColor, out _, out float S, out float V);
+            float H = 0.1f + fireResistanceCurrent / fireResistanceMax * 0.13f;
+            GetComponentInChildren<Renderer>().material.color = Color.HSVToRGB(H, S, V);
         }
     }
 
@@ -53,6 +57,6 @@ public class TileFire : MonoBehaviour
 
     public bool IsTileOnFire()
     {
-        return fireResistanceCurrent <= 0 && fireDuration > 0;
+        return fireResistanceCurrent <= 0 && fireDuration > 0 && isTileBurnable;
     }
 }
