@@ -50,4 +50,9 @@ public class TileFire : MonoBehaviour
     {
         fireResistanceCurrent = Mathf.Min(fireResistanceCurrent + resistanceAddition, fireResistanceMax);
     }
+
+    public bool IsTileOnFire()
+    {
+        return fireResistanceCurrent <= 0 && fireDuration > 0;
+    }
 }
