@@ -19,7 +19,7 @@ public class FireSound : MonoBehaviour
         audioSource.clip = fireClip;
         audioSource.Play();
         fireController = GameObject.Find("MapManager").GetComponent<FireController>();
-        InvokeRepeating("AdjustSound", 0f, fireSoundUpdateInterval);
+        InvokeRepeating(nameof(AdjustSound), 0f, fireSoundUpdateInterval);
     }
 
     void AdjustSound()
@@ -29,7 +29,7 @@ public class FireSound : MonoBehaviour
         {
             for (int x = 0; x < fireController.mapSizeX; x++)
             {
-                if(fireController.map[x, y].GetComponent<TileFire>().fireResistanceCurrent <= 0 && fireController.map[x, y].GetComponent<TileFire>().fireDuration > 0)
+                if(fireController.map[x, y].GetComponent<TileFire>().IsTileOnFire())
                 {
                     float distanceToThisTile = Vector3.Distance(fireController.map[x, y].transform.position, transform.position);
                     if (distanceToThisTile < distanceToPlayer)
