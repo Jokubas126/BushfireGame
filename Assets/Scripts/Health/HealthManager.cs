@@ -31,7 +31,7 @@ public class HealthManager
             TileFire tileBelow = hit.collider.gameObject.GetComponentInParent<TileFire>();
             if (tileBelow != null)   //Make sure we are above tile
             {
-                if (tileBelow.fireResistanceCurrent <= 0 && tileBelow.fireDuration > 0)
+                if (tileBelow.IsTileOnFire())
                 {
                     return true;
                 }
