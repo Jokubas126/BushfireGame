@@ -106,6 +106,7 @@ public class HoldObject : MonoBehaviour
             {
                 case "Rock":
                 case "Water":
+                case "PickableObject":
                     return false;
                 default:
                     return true;
