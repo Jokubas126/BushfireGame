@@ -10,8 +10,8 @@ public class FireController : MonoBehaviour
     public int fireTickCounter;
     public float fireStartResistanceMultiplier = 0.1f;
 
-    private int mapSizeX;
-    private int mapSizeY;
+    public int mapSizeX;
+    public int mapSizeY;
 
     void Start()
     {
