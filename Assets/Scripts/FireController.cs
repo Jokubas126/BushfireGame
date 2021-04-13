@@ -46,7 +46,8 @@ public class FireController : MonoBehaviour
             {
                 for (int j = 0; j < mapSizeY; j++)
                 {
-                    if (map[i, j].GetComponent<TileFire>().fireResistanceCurrent <= 0 && map[i, j].GetComponent<TileFire>().fireDuration > 0)
+                    TileFire tileFire = map[i, j].GetComponent<TileFire>();
+                    if (tileFire.IsTileOnFire())
                     {
                         if (i > 0)
                         {
@@ -65,7 +66,7 @@ public class FireController : MonoBehaviour
                             TileIgnition(i, j + 1);
                         }
 
-                        map[i, j].GetComponent<TileFire>().fireDuration--;
+                        tileFire.fireDuration--;
                     }
                 }
                 fireTickCounter = fireTickDelay;
@@ -75,7 +76,7 @@ public class FireController : MonoBehaviour
 
     private void TileIgnition(int i, int j)
     {
-        if (map[i, j].tag == "Rock" || map[i, j].tag == "Water" || map[i, j].GetComponent<TileFire>().fireDuration <= 0)  //We dont burn water and rock tiles
+        if (map[i, j].tag == "Water" || map[i, j].GetComponent<TileFire>().fireDuration <= 0)  //We dont burn water tiles
         { 
             return;
         }

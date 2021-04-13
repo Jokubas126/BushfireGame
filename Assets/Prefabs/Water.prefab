@@ -105,6 +105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8963479947310811493}
   - component: {fileID: 3146473072296881492}
+  - component: {fileID: 1618865106265315386}
   m_Layer: 9
   m_Name: Water
   m_TagString: Water
@@ -139,7 +140,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b1b4599cca54374482cce4d826a7a2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileType: 0
   fireResistanceMax: 0
   fireResistanceCurrent: 0
   fireDuration: 0
+  isFireStartTile: 0
+  isTileBurnable: 0
+  isColorStatic: 1
+--- !u!114 &1618865106265315386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6470179132410263191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a9e2b8f7229866468b12b69a671d58f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
