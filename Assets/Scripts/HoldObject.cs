@@ -11,7 +11,7 @@ public class HoldObject : MonoBehaviour
     private float floorHeight = 0.5f;
     private Animator animator;
     public bool isUnderPlayerControl = true;
-    public float interactionDistance = 10f;
+    public float interactionDistance = 1f;
     public float pickUpTime = 1f;
     private GameObject pickupHint;
 
@@ -42,22 +42,22 @@ public class HoldObject : MonoBehaviour
         CarryObject();
     }
 
-    public GameObject GetPickedUpObject()
-    {
-        return pickedUpObject;
-    }
-
     IEnumerator PickUp()
     {
-        setPlayerControl(false);
-        animator.Play("UpperBody.KoalaUp");
-        animator.Play("Hands.KoalaUp");
-        animator.SetBool("isHolding", true);
+        SetPlayerControl(false);
+        PlayHoldingAnimation(true);
         targetedObject.transform.Find("koala").GetComponent<Outline>().enabled = false;
         yield return new WaitForSeconds(pickUpTime);
-        pickedUpObject = targetedObject;
-        pickedObjectRotation = pickedUpObject.transform.rotation;
-        setPlayerControl(true);
+        if (targetedObject != null)
+        {
+            pickedUpObject = targetedObject;
+            pickedObjectRotation = pickedUpObject.transform.rotation;
+        }
+        else
+        {
+            PlayHoldingAnimation(false);
+        }
+        SetPlayerControl(true);
     }
 
     private void CarryObject()
@@ -71,20 +71,34 @@ public class HoldObject : MonoBehaviour
 
     IEnumerator Release()
     {
-        if (CanBeReleased())
+        if (CanBeReleased(out GameObject tile))
         {
-            setPlayerControl(false);
+            SetPlayerControl(false);
+            PlayHoldingAnimation(false);
             pickedUpObject.transform.position = GetPutPosition();
             pickedUpObject.transform.rotation = pickedObjectRotation;
             pickedUpObject.transform.parent = null;
             pickedUpObject.transform.Find("koala").GetComponent<Outline>().enabled = true;
+            tile.GetComponentInParent<TileController>().isAnimalPlaced = true;
             pickedUpObject = null;
+            yield return new WaitForSeconds(pickUpTime);
+            SetPlayerControl(true);
+        }
+    }
+
+    private void PlayHoldingAnimation(bool isPickingUp)
+    {
+        if (isPickingUp)
+        {
+            animator.Play("UpperBody.KoalaUp");
+            animator.Play("Hands.KoalaUp");
+        }
+        else
+        {
             animator.Play("UpperBody.KoalaDown");
             animator.Play("Hands.KoalaDown");
-            animator.SetBool("isHolding", false);
-            yield return new WaitForSeconds(pickUpTime);
-            setPlayerControl(true);
         }
+        animator.SetBool("isHolding", isPickingUp);
     }
 
     private Vector3 GetPutPosition()
@@ -96,19 +110,21 @@ public class HoldObject : MonoBehaviour
         return putPosition;
     }
 
-    private bool CanBeReleased()
+    private bool CanBeReleased(out GameObject tile)
     {
+        tile = null;
         int layerMask = 1 << 9; // layer of map tile
 
         if (Physics.Raycast(GetPutPosition(), Vector3.down, out RaycastHit hit, 3, layerMask))
         {
-            switch (hit.collider.gameObject.tag)
+            tile = hit.collider.gameObject;
+            switch (tile.tag)
             {
                 case "Rock":
                 case "Water":
                     return false;
                 default:
-                    return true;
+                    return !tile.GetComponentInParent<TileController>().isAnimalPlaced;
             }
         }
         return false;
@@ -131,7 +147,7 @@ public class HoldObject : MonoBehaviour
         return null;
     }
 
-    private void setPlayerControl(bool isPlayerControl)
+    private void SetPlayerControl(bool isPlayerControl)
     {
         isUnderPlayerControl = isPlayerControl;
         GetComponent<PlayerMovement>().isUnderPlayerControl = isPlayerControl;

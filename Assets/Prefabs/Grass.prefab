@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1971903914537951151}
   - component: {fileID: 9132005671140878886}
+  - component: {fileID: 3011105377515792109}
   m_Layer: 9
   m_Name: Grass
   m_TagString: Grass
@@ -49,6 +50,18 @@ MonoBehaviour:
   fireResistanceCurrent: 0
   fireDuration: 0
   isFireStartTile: 0
+--- !u!114 &3011105377515792109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3682513337744179943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a9e2b8f7229866468b12b69a671d58f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4688486134603075059
 GameObject:
   m_ObjectHideFlags: 0
