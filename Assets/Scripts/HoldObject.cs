@@ -42,22 +42,22 @@ public class HoldObject : MonoBehaviour
         CarryObject();
     }
 
-    public GameObject GetPickedUpObject()
-    {
-        return pickedUpObject;
-    }
-
     IEnumerator PickUp()
     {
-        setPlayerControl(false);
-        animator.Play("UpperBody.KoalaUp");
-        animator.Play("Hands.KoalaUp");
-        animator.SetBool("isHolding", true);
+        SetPlayerControl(false);
+        PlayHoldingAnimation(true);
         targetedObject.transform.Find("koala").GetComponent<Outline>().enabled = false;
         yield return new WaitForSeconds(pickUpTime);
-        pickedUpObject = targetedObject;
-        pickedObjectRotation = pickedUpObject.transform.rotation;
-        setPlayerControl(true);
+        if (targetedObject != null)
+        {
+            pickedUpObject = targetedObject;
+            pickedObjectRotation = pickedUpObject.transform.rotation;
+        }
+        else
+        {
+            PlayHoldingAnimation(false);
+        }
+        SetPlayerControl(true);
     }
 
     private void CarryObject()
@@ -73,18 +73,31 @@ public class HoldObject : MonoBehaviour
     {
         if (CanBeReleased())
         {
-            setPlayerControl(false);
+            SetPlayerControl(false);
+            PlayHoldingAnimation(false);
             pickedUpObject.transform.position = GetPutPosition();
             pickedUpObject.transform.rotation = pickedObjectRotation;
             pickedUpObject.transform.parent = null;
             pickedUpObject.transform.Find("koala").GetComponent<Outline>().enabled = true;
             pickedUpObject = null;
+            yield return new WaitForSeconds(pickUpTime);
+            SetPlayerControl(true);
+        }
+    }
+
+    private void PlayHoldingAnimation(bool isPickingUp)
+    {
+        if (isPickingUp)
+        {
+            animator.Play("UpperBody.KoalaUp");
+            animator.Play("Hands.KoalaUp");
+        }
+        else
+        {
             animator.Play("UpperBody.KoalaDown");
             animator.Play("Hands.KoalaDown");
-            animator.SetBool("isHolding", false);
-            yield return new WaitForSeconds(pickUpTime);
-            setPlayerControl(true);
         }
+        animator.SetBool("isHolding", isPickingUp);
     }
 
     private Vector3 GetPutPosition()
@@ -132,7 +145,7 @@ public class HoldObject : MonoBehaviour
         return null;
     }
 
-    private void setPlayerControl(bool isPlayerControl)
+    private void SetPlayerControl(bool isPlayerControl)
     {
         isUnderPlayerControl = isPlayerControl;
         GetComponent<PlayerMovement>().isUnderPlayerControl = isPlayerControl;
