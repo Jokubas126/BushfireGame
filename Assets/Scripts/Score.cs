@@ -1,29 +1,31 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class Score : MonoBehaviour
 {
-    public TMP_Text animalsSavedTextMesh;
-    public TMP_Text animalsDeadTextMesh;
-    private int animalsDead;
-    private SafeZoneLogic safeZone;
-    public int animalsAtStart = 0;
+    public GameObject animalBadgePrefab;
+    private int animalsDead = 0;
 
-    void Start()
-    {
-        transform.Find("Animals saved").gameObject.SetActive(true);
-        transform.Find("Animals dead").gameObject.SetActive(true);
-        safeZone = GameObject.Find("MapManager").transform.Find("SafetyZone(Clone)").GetComponent<SafeZoneLogic>();
-    }
+    private Transform animalBadgeContainer;
+    public Sprite aliveKoalaSprite;
+    public Sprite deadKoalaSprite;
 
-    void Update()
+    public void LoadAnimalsAtStart(int animalsAtStart)
     {
-        animalsSavedTextMesh.SetText("Animals saved: {0}/{1} ", safeZone.animalsSavedCount, animalsAtStart);
+        animalBadgeContainer = transform.Find("Animal Badges");
+        for(int i=0; i<animalsAtStart; i++)
+        {
+            GameObject badge = Instantiate(animalBadgePrefab, animalBadgeContainer);
+            badge.GetComponent<Image>().sprite = aliveKoalaSprite;
+            RectTransform rectTransform = badge.GetComponent<RectTransform>();
+            rectTransform.position = new Vector2(rectTransform.position.x + rectTransform.rect.width * i, rectTransform.position.y);
+        }
     }
 
     public void AnimalDied()
     {
+        animalBadgeContainer.GetChild(animalsDead).GetComponent<Image>().sprite = deadKoalaSprite;
         animalsDead++;
-        animalsDeadTextMesh.SetText("Animals lost: {0}", animalsDead);
     }
 }
