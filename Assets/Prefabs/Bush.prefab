@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 4933156971424796592}
   - component: {fileID: 5848643810109224556}
   - component: {fileID: 7486237095558036857}
+  - component: {fileID: 2869371158123229421}
   m_Layer: 0
   m_Name: Bush
   m_TagString: Bush
@@ -161,6 +162,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fromModel: {fileID: 4146752523880000483}
   toModel: {fileID: 771884842482081597}
+--- !u!114 &2869371158123229421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5667510694937359335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a9e2b8f7229866468b12b69a671d58f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAnimalOnTop: 0
 --- !u!1001 &465877358925718124
 PrefabInstance:
   m_ObjectHideFlags: 0

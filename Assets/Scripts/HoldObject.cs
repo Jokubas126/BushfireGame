@@ -11,7 +11,7 @@ public class HoldObject : MonoBehaviour
     private float floorHeight = 0.5f;
     private Animator animator;
     public bool isUnderPlayerControl = true;
-    public float interactionDistance = 10f;
+    public float interactionDistance = 1f;
     public float pickUpTime = 1f;
     private GameObject pickupHint;
 
@@ -71,7 +71,7 @@ public class HoldObject : MonoBehaviour
 
     IEnumerator Release()
     {
-        if (CanBeReleased())
+        if (CanBeReleased(out GameObject tile))
         {
             SetPlayerControl(false);
             PlayHoldingAnimation(false);
@@ -79,6 +79,7 @@ public class HoldObject : MonoBehaviour
             pickedUpObject.transform.rotation = pickedObjectRotation;
             pickedUpObject.transform.parent = null;
             pickedUpObject.transform.Find("koala").GetComponent<Outline>().enabled = true;
+            tile.GetComponentInParent<TileController>().isAnimalPlaced = true;
             pickedUpObject = null;
             yield return new WaitForSeconds(pickUpTime);
             SetPlayerControl(true);
@@ -109,20 +110,21 @@ public class HoldObject : MonoBehaviour
         return putPosition;
     }
 
-    private bool CanBeReleased()
+    private bool CanBeReleased(out GameObject tile)
     {
+        tile = null;
         int layerMask = 1 << 9; // layer of map tile
 
         if (Physics.Raycast(GetPutPosition(), Vector3.down, out RaycastHit hit, 3, layerMask))
         {
-            switch (hit.collider.gameObject.tag)
+            tile = hit.collider.gameObject;
+            switch (tile.tag)
             {
                 case "Rock":
                 case "Water":
-                case "PickableObject":
                     return false;
                 default:
-                    return true;
+                    return !tile.GetComponentInParent<TileController>().isAnimalPlaced;
             }
         }
         return false;

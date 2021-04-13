@@ -49,6 +49,7 @@ public class MapManager : MonoBehaviour
         Vector3 spawnLocation = new Vector3( x, 0, y );
         GameObject tileToSpawn = null;
         GameObject spawnedTile;
+        bool isAnimalPlaced = false;
         switch (tileType)
         {
             case 'G': 
@@ -71,6 +72,7 @@ public class MapManager : MonoBehaviour
                 break;
             case 'K':       //koala
                 tileToSpawn = grassPrefab;
+                isAnimalPlaced = true;
                 Instantiate(koalaPrefab, spawnLocation + new Vector3(0,1,0), Quaternion.identity, gameObject.transform);
                 break;
             case 'P':       //player
@@ -90,6 +92,7 @@ public class MapManager : MonoBehaviour
         {
             spawnedTile.GetComponent<TileFire>().isFireStartTile = true;
         }
+        spawnedTile.GetComponent<TileController>().isAnimalPlaced = isAnimalPlaced;
         return spawnedTile;
     }
 
