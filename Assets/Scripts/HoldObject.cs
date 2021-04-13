@@ -65,7 +65,7 @@ public class HoldObject : MonoBehaviour
         if (pickedUpObject != null)
         {
             pickedUpObject.transform.parent = transform;
-            pickedUpObject.transform.position = transform.position + transform.forward;
+            pickedUpObject.transform.position = transform.position + transform.forward * 0.6f + transform.up * -0.6f;
         }
     }
 
