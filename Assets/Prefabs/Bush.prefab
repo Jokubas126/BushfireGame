@@ -148,6 +148,8 @@ MonoBehaviour:
   fireResistanceCurrent: 0
   fireDuration: 0
   isFireStartTile: 0
+  isTileBurnable: 1
+  isColorStatic: 0
 --- !u!114 &7486237095558036857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,7 +176,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a9e2b8f7229866468b12b69a671d58f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isAnimalOnTop: 0
 --- !u!1001 &465877358925718124
 PrefabInstance:
   m_ObjectHideFlags: 0
