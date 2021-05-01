@@ -16,6 +16,7 @@ public class SafeZoneLogic : MonoBehaviour
     public List<GameObject> animalsAlive;
     public List<GameObject> animalsSaved;
     public int animalsSavedCount;
+    private GameObject uiCanvas;
 
     private bool objectsFound = false;
 
@@ -23,6 +24,7 @@ public class SafeZoneLogic : MonoBehaviour
 
     void Start()
     {
+        uiCanvas = GameObject.FindGameObjectWithTag("mainCanvas");
         StartCoroutine(LocateObjects());
     }
 
@@ -45,10 +47,13 @@ public class SafeZoneLogic : MonoBehaviour
                 );
 
             animalsSavedCount = animalsSaved.Count;
+
             foreach(GameObject animal in animalsSaved)
             {
                 animal.transform.Find("koala").GetComponent<Outline>().enabled = false;
             }
+
+            uiCanvas.GetComponent<Score>().AnimalsIconStatusUpdate(animalsSavedCount);
 
             if (animalsSavedCount == animalsAlive.Count && IsTargetInRange(player, radius))
             {
