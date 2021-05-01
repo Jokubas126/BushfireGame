@@ -44,9 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79bde8b9990bbdc4cae412ccc9733233, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 8
+  radius: 5
   animalsAlive: []
-  returnedPickables: 0
+  animalsSaved: []
+  animalsSavedCount: 0
+  uiCanvas: {fileID: 0}
 --- !u!1001 &2823584572526402514
 PrefabInstance:
   m_ObjectHideFlags: 0
