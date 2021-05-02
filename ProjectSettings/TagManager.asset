@@ -11,6 +11,7 @@ TagManager:
   - Bush
   - Water
   - Tree
+  - mainCanvas
   layers:
   - Default
   - TransparentFX
