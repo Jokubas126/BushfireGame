@@ -48,7 +48,6 @@ MonoBehaviour:
   animalsAlive: []
   animalsSaved: []
   animalsSavedCount: 0
-  uiCanvas: {fileID: 0}
 --- !u!1001 &2823584572526402514
 PrefabInstance:
   m_ObjectHideFlags: 0

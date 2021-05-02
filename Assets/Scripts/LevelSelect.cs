@@ -14,4 +14,9 @@ public class LevelSelect : MonoBehaviour
     {
         SceneManager.LoadScene("Master", LoadSceneMode.Single);
     }
+
+    public void LoadLevel2()
+    {
+        SceneManager.LoadScene("Level2", LoadSceneMode.Single);
+    }
 }
