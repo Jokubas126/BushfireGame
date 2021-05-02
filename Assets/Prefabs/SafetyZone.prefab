@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79bde8b9990bbdc4cae412ccc9733233, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 6
+  radius: 5
   animalsAlive: []
   animalsSaved: []
   animalsSavedCount: 0
